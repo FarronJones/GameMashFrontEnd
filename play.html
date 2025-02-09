@@ -6,12 +6,34 @@
     <title>Play</title>
     <link rel="stylesheet" href="style.css"> 
     <script src="navbar.js" defer></script> 
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="navbar"></div> 
-
-    <h1>Welcome to the Play Page</h1>
-    <p>Here, you can enjoy interactive games and challenges!</p>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="play.html" class="active">Play</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="game-container">
+        <div class="game-screen">
+            <button id="playButton"> ▶ PLAY </button>
+        </div>
+    </div>
+    <div class="bottom-section">
+        <div class="controls">
+            <span>⚙️</span>
+            <span>📜</span>
+        </div>
+        <div class="chat">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
 
 </body>
 </html>

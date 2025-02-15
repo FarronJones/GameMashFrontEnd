@@ -6,9 +6,108 @@
     <title>About</title>
     <link rel="stylesheet" href="style.css"> 
     <script src="navbar.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 50px;
+        }
+
+        .left-section, .right-section {
+            width: 45%;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: -10px;
+        }
+
+        .animated-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .creators-box {
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+
+        .role-card {
+            background-color: #444;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .role-card:hover {
+            background-color: #666;
+        }
+
+        .creators-content {
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid white;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar"></div>
-    <h1 class="about-header">About</h1>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="title">How to Play:</div>
+            <div class="animated-text" id="howToPlayText"> </div>
+
+            <div style="margin-top: 30px;"></div>
+            <div class="title">FAQ's:</div>
+            <div class="animated-text" id="faqText"> </div>
+        </div>
+
+        <div class="right-section">
+            <div class="title">Get to Know the Creators:</div>
+            <div class="creators-box">
+                <div class="role-card" onclick="showCreators('frontEnd')">Front End</div>
+                <div class="role-card" onclick="showCreators('backend')">Backend</div>
+                <div class="role-card" onclick="showCreators('pm')">Project Manager</div>
+                <div class="creators-content" id="creatorsContent">Click on a role to see the team members.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCreators(role) {
+            let content = {
+                frontEnd: "Perla Rodriguez, Jennifer Martinez, Javier Castillo",
+                backend: "Wayne Sterling, Edmon Demirovski",
+                pm: "Farron Jones"
+            };
+            document.getElementById("creatorsContent").innerHTML = content[role];
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("howToPlayText").style.opacity = 1;
+                document.getElementById("howToPlayText").style.transform = "translateY(0)";
+                document.getElementById("faqText").style.opacity = 1;
+                document.getElementById("faqText").style.transform = "translateY(0)";
+            }, 500);
+        });
+    </script>
 </body>
 </html>
+
+
+
+

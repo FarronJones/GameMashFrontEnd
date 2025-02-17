@@ -4,12 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="navbar.js" defer></script> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="navbar"></div>
 
+    <!-- main Content for Community Section -->
+    <section class="community-section">
+        <h1>Welcome to the Community!</h1>
 
+        <!-- thoughts/Comments Section -->
+        <div class="post-thought">
+            <h2>Share Your Thoughts</h2>
+            <textarea id="thought-input" placeholder="What's on your mind?" rows="4" cols="50"></textarea>
+            <button onclick="postThought()">Post</button>
+        </div>
+
+        <!-- Display Thoughts -->
+        <div id="thoughts-display" class="thoughts-display">
+            <h2>Recent Thoughts</h2>
+            <div id="thoughts-container"></div>
+        </div>
+
+        <!-- Discord Section -->
+        <div class="discord-section">
+            <h2>Join Our Discord Server</h2>
+            <p>Stay connected with the community on Discord!</p>
+            <a href="https://discord.com/LINKKKKKK" target="_blank" class="discord-link">Join Our Discord</a>
+        </div>
+    </section>
+
+    <script>
+        // Function to handle posting a thought/comment
+        function postThought() {
+            const thoughtInput = document.getElementById("thought-input");
+            const thoughtsContainer = document.getElementById("thoughts-container");
+
+            // Check if input is empty
+            if (thoughtInput.value.trim() === "") {
+                alert("Please enter a thought before posting!");
+                return;
+            }
+
+            // create a new div to display the comment
+            const newThought = document.createElement("div");
+            newThought.classList.add("thought");
+
+            // insert the thought text and date
+            const thoughtText = document.createElement("p");
+            thoughtText.textContent = thoughtInput.value;
+            newThought.appendChild(thoughtText);
+
+            const thoughtDate = document.createElement("small");
+            thoughtDate.textContent = `Posted on: ${new Date().toLocaleString()}`;
+            newThought.appendChild(thoughtDate);
+
+            // add the new thought to the container
+            thoughtsContainer.appendChild(newThought);
+
+            // clear the input field after posting
+            thoughtInput.value = "";
+        }
+    </script>
+
+    <script src="navbar.js" defer></script> 
 </body>
 </html>

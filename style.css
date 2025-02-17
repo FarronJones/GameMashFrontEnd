@@ -1,8 +1,9 @@
+/* body styling */
 body {
     margin: 0;
     padding: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #c6deff;
+    background-color: #3aaedf;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -10,9 +11,9 @@ body {
     padding-top: 80px;
 }
 
-
+/* nav bar */
 nav {
-    background-color: #2c3e50;
+    background-color: #ff8226;
     width: 100%;
     padding: 10px 0;
     display: flex;
@@ -23,26 +24,30 @@ nav {
     z-index: 1000;
 }
 
+/* nav container */
 .nav-container {
     width: 90%;
     display: flex;
-    flex-direction: row; 
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
 }
 
+/* top right */
 .auth-section {
-    width: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     align-items: center;
-    padding: 5px 20px;
 }
 
+/* login and signup */
 .auth-content {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
 .auth-link {
@@ -58,6 +63,7 @@ nav {
     background-color: #ffffff;
 }
 
+/* navigation links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -67,11 +73,11 @@ nav {
     margin: 0;
 }
 
-li {
+.nav-links li {
     display: inline;
 }
 
-a {
+.nav-links a {
     text-decoration: none;
     color: #ffffff;
     font-size: 18px;
@@ -79,27 +85,19 @@ a {
     transition: background 0.3s, color 0.3s;
 }
 
-a:hover {
-    background-color: #34495e;
+.nav-links a:hover {
+    background-color: #2f8b56;
     border-radius: 5px;
 }
 
-
+/* game description */
 .game-description {
-    margin-top: 500px; 
-}
-
-.about-header {
-    margin-top: 20px;
-}
-
-
-.game-description {
-    border: 3px solid #ffffff; 
+    margin-top: 100px; /* Adjust to ensure spacing between navbar and content */
+    border: 3px solid #ffffff;
     padding: 20px;
     width: 80%;
     max-width: 600px;
-    text-align: center; 
+    text-align: center;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 }
@@ -119,7 +117,7 @@ a:hover {
     margin: 5px 0;
 }
 
-
+/* game container */
 .game-container {
     display: flex;
     justify-content: center;
@@ -151,10 +149,10 @@ a:hover {
     background-color: #219150;
 }
 
-
+/* authentication container */
 .auth-container {
     width: 300px;
-    margin: 120px auto; 
+    margin: 120px auto;
     padding: 20px;
     background-color: white;
     color: black;
@@ -198,4 +196,15 @@ a:hover {
 
 .auth-container p {
     margin-top: 10px;
+}
+
+/* Style for the game image */
+.game-image {
+    text-align: center;
+}
+
+.game-image img {
+    max-width: 70%;
+    height: auto;
+    border-radius: 10px;
 }

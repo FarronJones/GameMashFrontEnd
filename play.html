@@ -16,15 +16,24 @@
             <button id="playButton"> ▶ PLAY </button>
         </div>
     </div>
-
     <div class="bottom-section">
         <div class="controls">
-            <span>⚙️</span>
-            <span>📜</span>
+            <h2>Controls:</h2>
+            <p>Use the following keys to play:</p>
+            <ul>
+                <li>W - Move Up</li>
+                <li>S - Move Down</li>
+                <li>A - Move Left</li>
+                <li>D - Move Right</li>
+            </ul>
         </div>
         <div class="chat">
-            <input type="text" id="chatInput" placeholder="Type a message...">
-            <button id="sendBtn">Send</button>
+            <h2>Chat:</h2>
+            <div id="chatBox" class="chat-box"></div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type a message...">
+                <button id="sendBtn">Send</button>
+            </div>
         </div>
     </div>
 </body>

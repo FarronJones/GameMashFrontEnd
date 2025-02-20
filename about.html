@@ -25,6 +25,11 @@
             margin-left: -10px;
         }
 
+        .right-section .title {
+            text-align: center;  
+            margin-bottom: 15px; 
+        }
+
         .animated-text {
             opacity: 0;
             transform: translateY(20px);
@@ -32,33 +37,72 @@
         }
 
         .creators-box {
-            border: 2px solid white;
-            padding: 10px;
-            border-radius: 10px;
+            border: 3px solid #FFA500;
+            padding: 75px;
+            border-radius: 15px;
             width: 100%;
+            min-height: 500px;
             text-align: center;
-            background-color: #222;
+            background: linear-gradient(135deg, #FFA500, #FFD580);
             color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .role-card {
-            background-color: #444;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.8s ease-in-out;
+            overflow: hidden;
+            max-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: background 0.3s ease;
+            border: 2px solid white;
         }
 
-        .role-card:hover {
-            background-color: #666;
+        .role-card.expand {
+            max-height: 250px;
+            background: linear-gradient(135deg, #FF4500, #FF8C00);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
         }
 
         .creators-content {
-            font-size: 16px;
-            margin-top: 10px;
-            padding: 10px;
-            border-top: 1px solid white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            font-size: 18px;
+            padding: 15px;
+            border-top: 2px solid white;
+            text-align: center;
+        }
+
+        .creators-content.show {
+            opacity: 1;
+        }
+
+        .video-container {
+            margin-top: 30px; 
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+        }
+
+        .video-box {
+            border: 2px solid #FFA500;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-box iframe {
+            width: 100%;
+            height: 315px;
         }
     </style>
 </head>
@@ -68,34 +112,38 @@
     <div class="container">
         <div class="left-section">
             <div class="title">How to Play:</div>
-            <div class="animated-text" id="howToPlayText"> </div>
+            <div class="animated-text" id="howToPlayText"></div>
 
             <div style="margin-top: 30px;"></div>
             <div class="title">FAQ's:</div>
-            <div class="animated-text" id="faqText"> </div>
+            <div class="animated-text" id="faqText"></div>
+
+            
+            <div class="video-container">
+                <div class="title">Game Introduction Video:</div>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
 
         <div class="right-section">
             <div class="title">Get to Know the Creators:</div>
             <div class="creators-box">
-                <div class="role-card" onclick="showCreators('frontEnd')">Front End</div>
-                <div class="role-card" onclick="showCreators('backend')">Backend</div>
-                <div class="role-card" onclick="showCreators('pm')">Project Manager</div>
-                <div class="creators-content" id="creatorsContent">Click on a role to see the team members.</div>
+                <div class="role-card" id="frontEnd">Front End 
+                    <div class="creators-content">Perla Rodriguez, Jennifer Martinez, Javier Castillo</div>
+                </div>
+                <div class="role-card" id="backend">Backend 
+                    <div class="creators-content">Wayne Sterling, Edmon Demirovski</div>
+                </div>
+                <div class="role-card" id="pm">Project Manager 
+                    <div class="creators-content">Farron Jones</div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function showCreators(role) {
-            let content = {
-                frontEnd: "Perla Rodriguez, Jennifer Martinez, Javier Castillo",
-                backend: "Wayne Sterling, Edmon Demirovski",
-                pm: "Farron Jones"
-            };
-            document.getElementById("creatorsContent").innerHTML = content[role];
-        }
-
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 document.getElementById("howToPlayText").style.opacity = 1;
@@ -103,11 +151,21 @@
                 document.getElementById("faqText").style.opacity = 1;
                 document.getElementById("faqText").style.transform = "translateY(0)";
             }, 500);
+
+            function revealRole(roleId, delay) {
+                setTimeout(() => {
+                    let roleCard = document.getElementById(roleId);
+                    let content = roleCard.querySelector(".creators-content");
+                    roleCard.classList.add("expand");
+                    content.classList.add("show");
+                }, delay);
+            }
+
+            revealRole("frontEnd", 1000);
+            revealRole("backend", 3000);
+            revealRole("pm", 5000);
         });
     </script>
 </body>
 </html>
-
-
-
 

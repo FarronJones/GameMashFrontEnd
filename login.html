@@ -4,24 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
     <script src="navbar.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background-color: #3aaedf;
+            color: white;
+            text-align: center;
+        }
+
+        .welcome-text {
+            font-size: 2em;
+            margin-top: 100px;
+            color: white;
+        }
+
+        .player-info {
+            font-size: 1.5em;
+            margin-top: 20px;
+            animation: slide-in 1.5s ease-out;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .auth-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin: 60px auto;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 10px;
+            margin: 15px 0;
+        }
+
+        .input-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 1em;
+            flex: 1;
+            padding-left: 10px;
+        }
+
+        .input-container input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        button {
+            background: #6200ea;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #3700b3;
+        }
+
+        .forgot-password {
+            margin-top: 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .or-text {
+            margin-top: 10px;
+            font-size: 1em;
+            color: white;
+        }
+
+        .google-signin {
+            background: white;
+            color: black;
+            font-weight: bold;
+        }
+
+        .signup-text {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .signup-text a {
+            color: orange;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body>
+<body class="login-page">
     <div id="navbar"></div>
 
+    
+    <h1 class="welcome-text">Welcome Back</h1>
+
+    
+    <h2 class="player-info">Enter Player Info to Login</h2>
+
     <div class="auth-container">
-        <h2>Login</h2>
         <form action="#" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            
+            <div class="input-container">
+                <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            
+            <div class="input-container">
+                <img src="Images/key-icon.jpg" alt="Key Icon" class="input-icon">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
 
+            
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+
+        
+        <p class="forgot-password">Forgot your password?</p>
+
+        
+        <p class="or-text">Or</p>
+        <button class="google-signin">Sign in with Google</button>
+
+        
+        <p class="signup-text">Don't have an account? <a href="signup.html">Sign up!</a></p>
     </div>
 </body>
 </html>
+

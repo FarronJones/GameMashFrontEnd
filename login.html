@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="navbar.js" defer></script>
+    <script src="showPassword.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <style>
-        .login-page {
+         .login-page {
             font-family: "Comic Sans MS", cursive, sans-serif;
             background-color: #3aaedf;
             color: white;
@@ -53,6 +54,7 @@
             border-radius: 25px;
             padding: 10px;
             margin: 15px 0;
+            position: relative;
         }
 
         .input-container input {
@@ -122,45 +124,44 @@
         .signup-text a:hover {
             text-decoration: underline;
         }
+        .eye-icon {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="login-page">
     <div id="navbar"></div>
 
-    
     <h1 class="welcome-text">Welcome Back</h1>
-
-    
     <h2 class="player-info">Enter Player Info to Login</h2>
 
     <div class="auth-container">
         <form action="#" method="POST">
-            
             <div class="input-container">
                 <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
                 <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
 
-            
             <div class="input-container">
                 <img src="Images/key-icon.jpg" alt="Key Icon" class="input-icon">
                 <input type="password" id="password" name="password" placeholder="Password" required>
+                <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
+                     onmousedown="togglePassword(true, 'password')" 
+                     onmouseup="togglePassword(false, 'password')" 
+                     onmouseleave="togglePassword(false, 'password')">
             </div>
 
-            
             <button type="submit">Login</button>
         </form>
 
-        
         <p class="forgot-password">Forgot your password?</p>
-
-        
         <p class="or-text">Or</p>
         <button class="google-signin">Sign in with Google</button>
-
-        
         <p class="signup-text">Don't have an account? <a href="signup.html">Sign up!</a></p>
     </div>
 </body>
 </html>
-

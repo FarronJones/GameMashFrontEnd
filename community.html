@@ -18,7 +18,7 @@
         <div class="post-thought">
             <h2>Share Your Thoughts</h2>
             <textarea id="thought-input" placeholder="What's on your mind?" rows="4" cols="50"></textarea>
-            <button onclick="postThought()">Post</button>
+            <button style="background-color: #007BFF; color: white;" onclick="postThought()">Post</button> <!-- Blue Post Button -->
         </div>
 
         <!-- Display Thoughts -->
@@ -36,38 +36,82 @@
     </section>
 
     <script>
-        // Function to handle posting a thought/comment
         function postThought() {
             const thoughtInput = document.getElementById("thought-input");
             const thoughtsContainer = document.getElementById("thoughts-container");
 
-            // Check if input is empty
             if (thoughtInput.value.trim() === "") {
                 alert("Please enter a thought before posting!");
                 return;
             }
 
-            // create a new div to display the comment
             const newThought = document.createElement("div");
             newThought.classList.add("thought");
 
-            // insert the thought text and date
             const thoughtText = document.createElement("p");
             thoughtText.textContent = thoughtInput.value;
             newThought.appendChild(thoughtText);
+
+            const editButton = document.createElement("button");
+            editButton.innerHTML = "✏️ Edit"; 
+            editButton.style.backgroundColor = "#F5A623";  
+            editButton.style.color = "white";
+            editButton.onclick = () => {
+                const newText = prompt("Edit your comment:", thoughtText.textContent);
+                if (newText) {
+                    thoughtText.textContent = newText;
+                }
+            };
+
+            const replyButton = document.createElement("button");
+            replyButton.innerHTML = "💬 Reply"; 
+            replyButton.style.backgroundColor = "#50C878";  
+            replyButton.style.color = "white";
+            replyButton.onclick = () => {
+                const replyText = prompt("Enter your reply:");
+                if (replyText) {
+                    const reply = document.createElement("div");
+                    reply.classList.add("reply");
+                    reply.innerHTML = `<p><strong>You:</strong> ${replyText}</p>`;
+                    newThought.appendChild(reply);
+                }
+            };
+
+            const deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "❌ Delete"; 
+            deleteButton.style.backgroundColor = "#FF6F61";  
+            deleteButton.style.color = "white";
+            deleteButton.onclick = () => {
+                newThought.remove();
+            };
+
+            const likeButton = document.createElement("button");
+            likeButton.innerHTML = "❤️ Like"; 
+            likeButton.style.backgroundColor = "#9B59B6";  
+            likeButton.style.color = "white";
+            let likeCount = 0;
+            const likeCounter = document.createElement("span");
+            likeCounter.textContent = ` (${likeCount})`;
+            likeButton.onclick = () => {
+                likeCount++;
+                likeCounter.textContent = ` (${likeCount})`;
+            };
+
+            newThought.appendChild(editButton);
+            newThought.appendChild(replyButton);
+            newThought.appendChild(deleteButton);
+            newThought.appendChild(likeButton);
+            newThought.appendChild(likeCounter);
 
             const thoughtDate = document.createElement("small");
             thoughtDate.textContent = `Posted on: ${new Date().toLocaleString()}`;
             newThought.appendChild(thoughtDate);
 
-            // add the new thought to the container
             thoughtsContainer.appendChild(newThought);
-
-            // clear the input field after posting
             thoughtInput.value = "";
         }
     </script>
 
-    <script src="navbar.js" defer></script> 
+    <script src="navbar.js" defer></script>
 </body>
 </html>

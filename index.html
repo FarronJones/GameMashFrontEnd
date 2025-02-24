@@ -4,43 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameMash</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="navbar.js" defer> </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="navbar.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #3aaedf;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .faq-header span {
+            color: orange;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .faq-content {
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: orange;
+            display: none;
+        }
+
+        .faq-header.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body>
-    
     <div id="navbar"></div>
     <div class="game-image">
-        <img src="Images/logoGAMEMASH.JPG" >
+        <img src="Images/logoGAMEMASH.JPG" alt="GameMash Logo">
     </div>
-    <!-- Game Description Section -->
+
     <section class="game-description">
         <h1 class="game-title">Game Mash</h1>
-        <p class="game-genre"><strong>Genre:</strong> [Your Game Genre Here]</p>
-        <p class="game-rating"><strong>Rating:</strong> ⭐⭐⭐⭐⭐ [Your Rating Here] / 5 ([Your Vote Count Here] Votes)</p>
-        <p class="game-updated"><strong>Updated:</strong> [Last Update Date]</p>
-        <p class="game-release"><strong>Release:</strong> [Release Date]</p>
-        <p class="game-platforms"><strong>Platforms:</strong> [Your Platforms Here]</p>
-        
-        <h3>How to Play</h3>
-        <p>[Describe your game’s controls and mechanics here]</p>
+        <p class="game-genre"><strong>Genre: Puzzle Platformer</strong></p>
+        <p class="game-rating"><strong>Rating: TBD</strong> ⭐⭐⭐⭐⭐</p>
+        <p class="game-updated"><strong>Updated: Feb 2025</strong></p>
+        <p class="game-release"><strong>Release: May 2025</strong></p>
+        <p class="game-platforms"><strong>Platforms: Any browser</strong></p>
 
-        <h3>Tips & Tricks</h3>
-        <ul>
-            <li>[Tip 1 - Add gameplay strategy here]</li>
-            <li>[Tip 2 - Add another helpful tip here]</li>
-            <li>[Tip 3 - Add an advanced technique here]</li>
-        </ul>
-
+        <h3>How to Play: </h3>
+        <h4>In Game Mash, you take control of two quirky characters, each with their own unique powers and abilities. 
+        Imagine one being a delicious burger, ready to flip and sizzle, while the other could be anything from a quirky sidekick to an unpredictable element with special skills!
+            Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!<h4>
+           
         <h3>FAQs</h3>
-        <p><strong>Can you play this game alone?</strong></p>
-        <p>[Answer about single-player or multiplayer mode]</p>
 
-        <p><strong>How many levels are there?</strong></p>
-        <p>[Answer about level count and difficulty]</p>
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFAQItem(1)">
+                <span>Can you play this game alone?</span>
+                <svg id="arrow-1" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div id="faq-content-1" class="faq-content">
+                <p>Game Mash is designed for co-op play, where you control two unique characters with distinct abilities. While it's meant to be played with a friend for maximum fun, playing solo is definitely possible. It becomes a true challenge as you manage both characters on your own, balancing their abilities and strategies. Whether you play solo or with a friend, the experience is always exciting!</p> </div>
+        </div>
 
-        <p><strong>When was this game released?</strong></p>
-        <p>[Release year and any fun facts]</p>
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFAQItem(2)">
+                <span>How many levels are there?</span>
+                <svg id="arrow-2" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div id="faq-content-2" class="faq-content">
+                <p>Game Mash features a variety of levels that increase in difficulty as you progress. There are 3 main levels, each with unique environments, enemies, and challenges. As you advance, the levels introduce new mechanics and puzzles, keeping the gameplay fresh and exciting.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFAQItem(3)">
+                <span>When was this game released?</span>
+                <svg id="arrow-3" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div id="faq-content-3" class="faq-content">
+                <p>Game Mash was released in 2025 by a group of students from Saint Xavier University</p>
+            </div>
+        </div>
     </section>
+
+    <script>
+        function toggleFAQItem(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const header = document.querySelector(`#faq-content-${id}`).previousElementSibling;
+            header.classList.toggle('active');
+            if (content.style.display === "block") {
+                content.style.display = "none";  // Close it
+            } else {
+                content.style.display = "block";  // Open it
+            }
+        }
+    </script>
 </body>
 </html>

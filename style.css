@@ -26,11 +26,13 @@ nav {
 
 /* nav container */
 .nav-container {
+    margin-top: 10px;
     width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    
 }
 
 /* top right */
@@ -41,6 +43,7 @@ nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  
 }
 
 /* login and signup */
@@ -96,7 +99,7 @@ nav {
     border: 3px solid #ffffff;
     padding: 20px;
     width: 80%;
-    max-width: 600px;
+    
     text-align: center;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;

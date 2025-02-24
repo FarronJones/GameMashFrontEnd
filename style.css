@@ -1,4 +1,4 @@
-/* body styling */
+/* General body styling */
 body {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     padding-top: 80px;
 }
 
-/* nav bar */
+/* Navbar styling */
 nav {
     background-color: #ff8226;
     width: 100%;
@@ -24,7 +24,6 @@ nav {
     z-index: 1000;
 }
 
-/* nav container */
 .nav-container {
     width: 90%;
     display: flex;
@@ -33,7 +32,6 @@ nav {
     position: relative;
 }
 
-/* top right */
 .auth-section {
     position: absolute;
     right: 0px;
@@ -43,7 +41,6 @@ nav {
     align-items: center;
 }
 
-/* login and signup */
 .auth-content {
     display: flex;
     align-items: center;
@@ -63,7 +60,6 @@ nav {
     background-color: #ffffff;
 }
 
-/* navigation links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -71,10 +67,6 @@ nav {
     gap: 40px;
     padding: 10px 0;
     margin: 0;
-}
-
-.nav-links li {
-    display: inline;
 }
 
 .nav-links a {
@@ -90,121 +82,170 @@ nav {
     border-radius: 5px;
 }
 
-/* game description */
-.game-description {
-    margin-top: 100px; /* Adjust to ensure spacing between navbar and content */
-    border: 3px solid #ffffff;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
+/* Login page styles */
+.login-page, .signup-page {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background-color: #3aaedf;
+    color: white;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
 }
 
-.game-title {
+.welcome-text, .signup-heading {
+    font-size: 2em;
+    margin-top: 100px;
+    color: white;
+}
+
+.player-info, .create-account-text {
+    font-size: 1.5em;
+    margin-top: 20px;
+    animation: slide-in 1.5s ease-out;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 60px auto;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 10px;
+    margin: 15px 0;
+    position: relative;
+}
+
+.input-container input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1em;
+    flex: 1;
+    padding-left: 10px;
+}
+
+.input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.eye-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+button {
+    background: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #3700b3;
+}
+
+.or-text {
+    margin-top: 10px;
+    font-size: 1em;
+    color: white;
+}
+
+.google-signup {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+/* About Page Styles */
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.left-section, .right-section {
+    width: 45%;
+}
+
+.title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-left: -10px;
 }
 
-.game-genre,
-.game-rating,
-.game-updated,
-.game-release,
-.game-platforms {
-    font-size: 18px;
-    margin: 5px 0;
+.right-section .title {
+    text-align: center;  
+    margin-bottom: 15px; 
 }
 
-/* game container */
-.game-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+.animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-.game-screen {
-    width: 500px;
-    height: 300px;
-    background-color: #34495e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-#playButton {
-    background-color: #27ae60;
+.creators-box {
+    border: 3px solid #FFA500;
+    padding: 75px;
+    border-radius: 15px;
+    width: 100%;
+    min-height: 500px;
+    text-align: center;
+    background: linear-gradient(135deg, #FFA500, #FFD580);
     color: white;
-    font-size: 20px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#playButton:hover {
-    background-color: #219150;
-}
-
-/* authentication container */
-.auth-container {
-    width: 300px;
-    margin: 120px auto;
+.role-card {
+    background: linear-gradient(135deg, #FF8C00, #FFA500);
     padding: 20px;
-    background-color: white;
-    color: black;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.auth-container h2 {
-    margin-bottom: 15px;
-}
-
-.auth-container label {
-    display: block;
-    text-align: left;
-    margin-top: 10px;
-}
-
-.auth-container input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.auth-container button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.auth-container button:hover {
-    background-color: #34495e;
-}
-
-.auth-container p {
-    margin-top: 10px;
-}
-
-/* Style for the game image */
-.game-image {
-    text-align: center;
-}
-
-.game-image img {
-    max-width: 70%;
-    height: auto;
+    margin: 15px 0;
     border-radius: 10px;
+    font-size: 50px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.role-card.expand {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.9), 0 0 40px rgba(255, 140, 0, 0.9);
+    transform: scale(1.1);
+}
+.creators-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.creators-content.show {
+    opacity: 1;
 }

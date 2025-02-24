@@ -11,8 +11,10 @@
         .container {
             display: flex;
             justify-content: space-between;
-            width: 80%;
+            width: 90%;
             margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .left-section, .right-section {
@@ -60,6 +62,32 @@
             padding: 10px;
             border-top: 1px solid white;
         }
+
+        /* FAQ Styles */
+        .faq-item {
+            margin: 15px 0;
+        }
+
+        .faq-header {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s;
+        }
+
+        .faq-content {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .active .faq-arrow {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -67,12 +95,47 @@
 
     <div class="container">
         <div class="left-section">
-            <div class="title">How to Play:</div>
-            <div class="animated-text" id="howToPlayText"> </div>
-
             <div style="margin-top: 30px;"></div>
             <div class="title">FAQ's:</div>
             <div class="animated-text" id="faqText"> </div>
+<br>
+            <!-- FAQ Section -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(1)">
+                    <span>Can you play this game alone?</span>
+                    <svg id="arrow-1" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+        
+                </div>
+                <div id="faq-content-1" class="faq-content">
+                    <p>Game Mash is designed for co-op play, where you control two unique characters with distinct abilities. While it's meant to be played with a friend for maximum fun, playing solo is definitely possible. It becomes a true challenge as you manage both characters on your own, balancing their abilities and strategies. Whether you play solo or with a friend, the experience is always exciting!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(2)">
+                    <span>How many levels are there?</span>
+                    <svg id="arrow-2" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="faq-content-2" class="faq-content">
+                    <p>Game Mash features a variety of levels that increase in difficulty as you progress. There are 3 main levels, each with unique environments, enemies, and challenges. As you advance, the levels introduce new mechanics and puzzles, keeping the gameplay fresh and exciting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(3)">
+                    <span>When was this game released?</span>
+                    <svg id="arrow-3" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="faq-content-3" class="faq-content">
+                    <p>Game Mash was released in 2025 by a group of students from Saint Xavier University.</p>
+                </div>
+            </div>
         </div>
 
         <div class="right-section">
@@ -104,10 +167,17 @@
                 document.getElementById("faqText").style.transform = "translateY(0)";
             }, 500);
         });
+
+        function toggleFAQItem(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const header = document.querySelector(`#faq-content-${id}`).previousElementSibling;
+            header.classList.toggle('active');
+            if (content.style.display === "block") {
+                content.style.display = "none";  // Close it
+            } else {
+                content.style.display = "block";  // Open it
+            }
+        }
     </script>
 </body>
 </html>
-
-
-
-

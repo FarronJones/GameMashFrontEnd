@@ -25,13 +25,13 @@ nav {
 }
 
 .nav-container {
+    margin-top: 10px;
     width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
-
 .auth-section {
     position: absolute;
     right: 0px;

@@ -1,4 +1,3 @@
-/* General body styling */
 body {
     margin: 0;
     padding: 0;
@@ -111,6 +110,7 @@ video {
     max-width: 800px;
     width: 80%;
     margin-top: 20px;
+    text-align: left;
 }
 
 .game-genre, .game-rating, .game-updated, .game-release, .game-platforms {

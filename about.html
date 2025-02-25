@@ -20,16 +20,19 @@
         .left-section, .right-section {
             width: 45%;
         }
+
         .title {
             font-size: 24px;
             font-weight: bold;
             margin-left: -10px;
         }
+
         .animated-text {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 1s ease, transform 1s ease;
         }
+
         .creators-box {
             border: 2px solid white;
             padding: 10px;
@@ -39,6 +42,7 @@
             background-color: #222;
             color: white;
         }
+
         .role-card {
             background-color: #444;
             padding: 10px;
@@ -47,14 +51,17 @@
             cursor: pointer;
             transition: background 0.3s ease;
         }
+
         .role-card:hover {
             background-color: #666;
         }
+
         .creators-content {
             font-size: 16px;
             margin-top: 10px;
             padding: 10px;
             border-top: 1px solid white;
+            display: none;
         }
 
         /* FAQ Styles */
@@ -79,6 +86,15 @@
             margin-top: 10px;
             text-align: left;
         }
+
+        .expand .creators-content {
+            display: block;
+        }
+
+        /* FAQ Arrow Rotation */
+        .faq-arrow.rotate {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -86,10 +102,10 @@
 
     <div class="container">
         <div class="left-section">
+            <div style="margin-top: 30px;"></div>
             <div class="title">FAQ's:</div>
-            <div class="animated-text" id="faqText"></div>
-            
-            
+            <div class="animated-text" id="faqText">Welcome to the FAQ section!</div>
+
             <!-- FAQ Section -->
             <div class="faq-item">
                 <div class="faq-header" onclick="toggleFAQItem(1)">
@@ -129,37 +145,51 @@
         </div>
 
         <div class="right-section">
-
             <div class="title">Get to Know the Creators:</div>
             <div class="creators-box">
-                <div class="role-card" onclick="showCreators('frontEnd')">Front End</div>
-                <div class="role-card" onclick="showCreators('backend')">Backend</div>
-                <div class="role-card" onclick="showCreators('pm')">Project Manager</div>
-                <div class="creators-content" id="creatorsContent">Click on a role to see the team members.</div>
+                <div class="role-card" id="frontEnd">Front End 
+                    <div class="creators-content">Perla Rodriguez, Jennifer Martinez, Javier Castillo</div>
+                </div>
+                <div class="role-card" id="backend">Backend 
+                    <div class="creators-content">Wayne Sterling, Edmon Demirovski</div>
+                </div>
+                <div class="role-card" id="pm">Project Manager 
+                    <div class="creators-content">Farron Jones</div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script>
-        function showCreators(role) {
-            let content = {
-                frontEnd: "Perla Rodriguez, Jennifer Martinez, Javier Castillo",
-                backend: "Wayne Sterling, Edmon Demirovski",
-                pm: "Farron Jones"
-            };
-            document.getElementById("creatorsContent").innerHTML = content[role];
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("faqText").style.opacity = 1;
+                document.getElementById("faqText").style.transform = "translateY(0)";
+            }, 500);
+
+            function revealRole(roleId, delay) {
+                setTimeout(() => {
+                    let roleCard = document.getElementById(roleId);
+                    let content = roleCard.querySelector(".creators-content");
+                    roleCard.classList.add("expand");
+                    content.classList.add("show");
+                }, delay);
+            }
+
+            revealRole("frontEnd", 1000);
+            revealRole("backend", 3000);
+            revealRole("pm", 5000);
+        });
 
         function toggleFAQItem(id) {
             const content = document.getElementById(`faq-content-${id}`);
             const arrow = document.getElementById(`arrow-${id}`);
-            
             if (content.style.display === "block") {
                 content.style.display = "none";
-                arrow.style.transform = "rotate(0deg)";
+                arrow.classList.remove("rotate");
             } else {
                 content.style.display = "block";
-                arrow.style.transform = "rotate(180deg)";
+                arrow.classList.add("rotate");
             }
         }
     </script>

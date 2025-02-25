@@ -7,67 +7,160 @@
     <link rel="stylesheet" href="style.css"> 
     <script src="navbar.js" defer></script>
     <script src="script.js" defer></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between; 
+            width: 90%;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .left-section, .right-section {
+            width: 45%;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: -10px;
+        }
+        .animated-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .creators-box {
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+        .role-card {
+            background-color: #444;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .role-card:hover {
+            background-color: #666;
+        }
+        .creators-content {
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid white;
+        }
+
+        /* FAQ Styles */
+        .faq-item {
+            margin: 15px 0;
+        }
+
+        .faq-header {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s;
+        }
+
+        .faq-content {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar"></div>
 
     <div class="container">
         <div class="left-section">
-            <div class="title">How to Play:</div>
-            <div class="animated-text" id="howToPlayText"></div>
-
-            <div style="margin-top: 30px;"></div>
             <div class="title">FAQ's:</div>
             <div class="animated-text" id="faqText"></div>
-
             
-            <div class="video-container">
-                <div class="title">Game Introduction Video:</div>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            
+            <!-- FAQ Section -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(1)">
+                    <span>Can you play this game alone?</span>
+                    <svg id="arrow-1" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="faq-content-1" class="faq-content">
+                    <p>Game Mash is designed for co-op play, where you control two unique characters with distinct abilities. While it's meant to be played with a friend for maximum fun, playing solo is definitely possible. It becomes a true challenge as you manage both characters on your own, balancing their abilities and strategies. Whether you play solo or with a friend, the experience is always exciting!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(2)">
+                    <span>How many levels are there?</span>
+                    <svg id="arrow-2" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="faq-content-2" class="faq-content">
+                    <p>Game Mash features a variety of levels that increase in difficulty as you progress. There are 3 main levels, each with unique environments, enemies, and challenges. As you advance, the levels introduce new mechanics and puzzles, keeping the gameplay fresh and exciting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQItem(3)">
+                    <span>When was this game released?</span>
+                    <svg id="arrow-3" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="faq-content-3" class="faq-content">
+                    <p>Game Mash was released in 2025 by a group of students from Saint Xavier University.</p>
                 </div>
             </div>
         </div>
 
         <div class="right-section">
+            
             <div class="title">Get to Know the Creators:</div>
             <div class="creators-box">
-                <div class="role-card" id="frontEnd">Front End 
-                    <div class="creators-content">Perla Rodriguez, Jennifer Martinez, Javier Castillo</div>
-                </div>
-                <div class="role-card" id="backend">Backend 
-                    <div class="creators-content">Wayne Sterling, Edmon Demirovski</div>
-                </div>
-                <div class="role-card" id="pm">Project Manager 
-                    <div class="creators-content">Farron Jones</div>
-                </div>
+                <div class="role-card" onclick="showCreators('frontEnd')">Front End</div>
+                <div class="role-card" onclick="showCreators('backend')">Backend</div>
+                <div class="role-card" onclick="showCreators('pm')">Project Manager</div>
+                <div class="creators-content" id="creatorsContent">Click on a role to see the team members.</div>
             </div>
         </div>
     </div>
-
+    
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById("howToPlayText").style.opacity = 1;
-                document.getElementById("howToPlayText").style.transform = "translateY(0)";
-                document.getElementById("faqText").style.opacity = 1;
-                document.getElementById("faqText").style.transform = "translateY(0)";
-            }, 500);
+        function showCreators(role) {
+            let content = {
+                frontEnd: "Perla Rodriguez, Jennifer Martinez, Javier Castillo",
+                backend: "Wayne Sterling, Edmon Demirovski",
+                pm: "Farron Jones"
+            };
+            document.getElementById("creatorsContent").innerHTML = content[role];
+        }
 
-            function revealRole(roleId, delay) {
-                setTimeout(() => {
-                    let roleCard = document.getElementById(roleId);
-                    let content = roleCard.querySelector(".creators-content");
-                    roleCard.classList.add("expand");
-                    content.classList.add("show");
-                }, delay);
+        function toggleFAQItem(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                arrow.style.transform = "rotate(0deg)";
+            } else {
+                content.style.display = "block";
+                arrow.style.transform = "rotate(180deg)";
             }
-
-            revealRole("frontEnd", 1000);
-            revealRole("backend", 3000);
-            revealRole("pm", 5000);
-        });
+        }
     </script>
 </body>
 </html>
-

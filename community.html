@@ -5,33 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #007BFF; /* Blue background */
+            color: #fff; /* White text color */
+        }
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .community-section {
+            margin-top: 70px;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .post-thought {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .post-thought button {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .discord-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .discord-link {
+            display: inline-block;
+            background-color: #7289da;
+            padding: 12px 24px;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .discord-link:hover {
+            background-color: #5b6e9e;
+        }
+
+        .thoughts-display {
+            margin-top: 30px;
+        }
+
+        .thought {
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .thought p {
+            margin-bottom: 10px;
+        }
+
+        .thought button {
+            margin-right: 8px;
+        }
+
+        .thought small {
+            display: block;
+            margin-top: 10px;
+            color: #888;
+        }
+
+        .thoughts-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="navbar"></div>
+    <div id="navbar">Community Hub</div>
 
-    <!-- main Content for Community Section -->
     <section class="community-section">
         <h1>Welcome to the Community!</h1>
 
-        <!-- thoughts/Comments Section -->
         <div class="post-thought">
             <h2>Share Your Thoughts</h2>
-            <textarea id="thought-input" placeholder="What's on your mind?" rows="4" cols="50"></textarea>
-            <button style="background-color: #007BFF; color: white;" onclick="postThought()">Post</button> <!-- Blue Post Button -->
+            <textarea id="thought-input" placeholder="What's on your mind?" rows="4"></textarea>
+            <button onclick="postThought()">Post</button>
         </div>
 
-        <!-- Display Thoughts -->
-        <div id="thoughts-display" class="thoughts-display">
+        <div class="thoughts-display">
             <h2>Recent Thoughts</h2>
-            <div id="thoughts-container"></div>
+            <div id="thoughts-container" class="thoughts-container"></div>
         </div>
 
-        <!-- Discord Section -->
         <div class="discord-section">
             <h2>Join Our Discord Server</h2>
             <p>Stay connected with the community on Discord!</p>
-            <a href="https://discord.com/LINKKKKKK" target="_blank" class="discord-link">Join Our Discord</a>
+            <a href="https://discord.gg/p26PTXvs" target="_blank" class="discord-link">Join Our Discord</a>
         </div>
     </section>
 
@@ -53,8 +177,8 @@
             newThought.appendChild(thoughtText);
 
             const editButton = document.createElement("button");
-            editButton.innerHTML = "✏️ Edit"; 
-            editButton.style.backgroundColor = "#F5A623";  
+            editButton.textContent = "✏️ Edit";
+            editButton.style.backgroundColor = "#F5A623";
             editButton.style.color = "white";
             editButton.onclick = () => {
                 const newText = prompt("Edit your comment:", thoughtText.textContent);
@@ -64,8 +188,8 @@
             };
 
             const replyButton = document.createElement("button");
-            replyButton.innerHTML = "💬 Reply"; 
-            replyButton.style.backgroundColor = "#50C878";  
+            replyButton.textContent = "💬 Reply";
+            replyButton.style.backgroundColor = "#50C878";
             replyButton.style.color = "white";
             replyButton.onclick = () => {
                 const replyText = prompt("Enter your reply:");
@@ -78,16 +202,16 @@
             };
 
             const deleteButton = document.createElement("button");
-            deleteButton.innerHTML = "❌ Delete"; 
-            deleteButton.style.backgroundColor = "#FF6F61";  
+            deleteButton.textContent = "❌ Delete";
+            deleteButton.style.backgroundColor = "#FF6F61";
             deleteButton.style.color = "white";
             deleteButton.onclick = () => {
                 newThought.remove();
             };
 
             const likeButton = document.createElement("button");
-            likeButton.innerHTML = "❤️ Like"; 
-            likeButton.style.backgroundColor = "#9B59B6";  
+            likeButton.textContent = "❤️ Like";
+            likeButton.style.backgroundColor = "#9B59B6";
             likeButton.style.color = "white";
             let likeCount = 0;
             const likeCounter = document.createElement("span");

@@ -8,7 +8,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 80px;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 50px;
+    text-align: center; /* Center align text */
 }
 
 /* Navbar styling */
@@ -25,17 +28,17 @@ nav {
 }
 
 .nav-container {
-    margin-top: 10px;
     width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
 }
+
 .auth-section {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -82,7 +85,52 @@ nav {
     border-radius: 5px;
 }
 
-/* Login page styles */
+/* Homepage styling */
+.game-title {
+    font-size: 3.5em;
+    color: #f8f8f8;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    padding-top: 20px;
+}
+
+video {
+    width: 70%;
+    max-width: 700px;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.game-description {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.game-genre, .game-rating, .game-updated, .game-release, .game-platforms {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #f8f8f8;
+}
+
+h4 {
+    font-size: 1.2em;
+    color: #f8f8f8;
+    line-height: 1.6;
+}
+
+/* Login/Signup page styles */
 .login-page, .signup-page {
     font-family: "Comic Sans MS", cursive, sans-serif;
     background-color: #3aaedf;
@@ -206,8 +254,8 @@ button:hover {
 }
 
 .right-section .title {
-    text-align: center;  
-    margin-bottom: 15px; 
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .animated-text {

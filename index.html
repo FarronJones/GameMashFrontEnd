@@ -16,64 +16,77 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 80px;
+            justify-content: center;
+            height: 100vh;
+            padding-top: 0;
+            text-align: center;
         }
 
-        .faq-item {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
+        .game-title {
+            font-size: 3em;
+            color: #f8f8f8;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
-        .faq-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 10px;
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        video {
+            width: 70%;
+            max-width: 700px;
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 10px;
         }
 
-        .faq-header span {
-            color: orange;
+        .game-description {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 80%;
+            margin-top: 20px;
         }
 
-        .faq-arrow {
-            transition: transform 0.3s ease;
-            margin-left: 10px;
+        .game-genre, .game-rating, .game-updated, .game-release, .game-platforms {
+            margin: 10px 0;
+            font-size: 1.2em;
         }
 
-        .faq-content {
-            padding: 10px;
-            background-color: #f9f9f9;
-            color: orange;
-            display: none;
+        h3 {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #f8f8f8;
         }
 
-        .faq-header.active .faq-arrow {
-            transform: rotate(180deg);
+        h4 {
+            font-size: 1.2em;
+            color: #f8f8f8;
+            line-height: 1.6;
+        }
+
+        /* Add some space between sections */
+        .game-description h3 {
+            margin-top: 30px;
+        }
+
+        /* Hover effect on video */
+        video:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
         }
     </style>
 </head>
 <body>
     <div id="navbar"></div>
-    
-    <img src="Images/logoGAMEMASH.JPG" alt="GameMash Logo">
-
+    <h1 class="game-title">Game Mash</h1>
+    <video autoplay loop muted playsinline>
+        <source src="Images/logoReplay.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <section class="game-description">
-        <h1 class="game-title">Game Mash</h1>
-        <p class="game-genre"><strong>Genre: Puzzle Platformer</strong></p>
-        <p class="game-rating"><strong>Rating: TBD</strong> ⭐⭐⭐⭐⭐</p>
-        <p class="game-updated"><strong>Updated: Feb 2025</strong></p>
-        <p class="game-release"><strong>Release: May 2025</strong></p>
-        <p class="game-platforms"><strong>Platforms: Any browser</strong></p>
-
-        <h3>How to Play: </h3>
+        <h3>How to Play:</h3>
         <h4>In Game Mash, you take control of two quirky characters, each with their own unique powers and abilities. 
         Imagine one being a delicious burger, ready to flip and sizzle, while the other could be anything from a quirky sidekick to an unpredictable element with special skills!
-            Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!</h4>
+        Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!</h4>
     </section>
-
 </body>
 </html>

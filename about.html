@@ -7,99 +7,9 @@
     <link rel="stylesheet" href="style.css"> 
     <script src="navbar.js" defer></script>
     <script src="script.js" defer></script>
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between; 
-            width: 90%;
-            margin-top: 50px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .left-section, .right-section {
-            width: 45%;
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-left: -10px;
-        }
-
-        .animated-text {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .creators-box {
-            border: 2px solid white;
-            padding: 10px;
-            border-radius: 10px;
-            width: 100%;
-            text-align: center;
-            background-color: #222;
-            color: white;
-        }
-
-        .role-card {
-            background-color: #444;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .role-card:hover {
-            background-color: #666;
-        }
-
-        .creators-content {
-            font-size: 16px;
-            margin-top: 10px;
-            padding: 10px;
-            border-top: 1px solid white;
-            display: none;
-        }
-
-        /* FAQ Styles */
-        .faq-item {
-            margin: 15px 0;
-        }
-
-        .faq-header {
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-arrow {
-            transition: transform 0.3s;
-        }
-
-        .faq-content {
-            display: none;
-            margin-top: 10px;
-            text-align: left;
-        }
-
-        .expand .creators-content {
-            display: block;
-        }
-
-        /* FAQ Arrow Rotation */
-        .faq-arrow.rotate {
-            transform: rotate(180deg);
-        }
-    </style>
 </head>
 <body>
     <div id="navbar"></div>
-
     <div class="container">
         <div class="left-section">
             <div style="margin-top: 30px;"></div>

@@ -6,6 +6,7 @@
     <title>Sign Up</title>
     <script src="navbar.js" defer></script>
     <script src="showPassword.js" defer></script>
+    <script src="updateAvatarProf.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="signup-page">
@@ -43,12 +44,38 @@
                      onmouseup="togglePassword(false, 'confirm-password')" 
                      onmouseleave="togglePassword(false, 'confirm-password')">
             </div>
+            
 
-            <button type="submit">Sign Up</button>
-        </form>
-
-        <p class="or-text">Or</p>
-        <button class="google-signup">Sign Up with Google</button>
+            <!-- Avatar Selection -->
+    <h3>Choose Your Avatar</h3>
+    <div class="avatar-selection">
+        <label>
+            <input type="radio" name="avatar" value="avatar1.avif" required>
+            <img src="Images/avatar1.avif" class="avatar" alt="Avatar 1">
+        </label>
+       
+        <label>
+            <input type="radio" name="avatar" value="avatar2.png">
+            <img src="Images/avatar2.png" class="avatar" alt="Avatar 2">
+        </label>
+      
+        <label>
+            <input type="radio" name="avatar" value="avatar3.png">
+            <img src="Images/avatar3.png" class="avatar" alt="Avatar 3">
+        </label>
+        <label>
+            <input type="radio" name="avatar" value="avatar4.png">
+            <img src="Images/avatar4.png" class="avatar" alt="Avatar 4">
+        </label>
     </div>
+
+    <!-- Profile Picture Display -->
+    <div class="profile-pic-container">
+        <img id="profile-pic" class="profile-pic" src="Images/logoGAMEMASH.JPG" alt="Profile Picture">
+    </div>
+
+    <button type="submit">Sign Up</button>
+</form>
+</div>
 </body>
 </html>

@@ -9,20 +9,48 @@
 </head>
 <body>
     <div id="navbar"></div>
+    <label for="language-select">🌍 Select Language:</label>
+    <select id="language-select">
+        <option value="en">English </option>
+        <option value="es">Español </option>
+        <option value="fr">Français </option>
+    </select>
+
     <h1 class="game-title">Game Mash</h1>
     <img src="Images/logoGAMEMASH.JPG" alt="GameMash Logo" style="width: 50%; height: auto;">
 
-       
-</img>
     <section class="game-description">
-        <h3>How to Play:</h3>
-        <h4>In Game Mash, you take control of two quirky characters, each with their own unique powers and abilities. 
+        <h3 id="how-to-play-title">How to Play:</h3>
+        <h4 id="game-description-text">In Game Mash, you take control of two quirky characters, each with their own unique powers and abilities. 
             Imagine one being a delicious burger, ready to flip and sizzle, while the other could be anything from a quirky sidekick to an unpredictable element with special skills!
-            Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!</h4>
+            Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!
+        </h4>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <script src="app.js"></script>
+
+    <script>
+        const translations = {
+            en: {
+                howToPlay: "How to Play:",
+                description: "In Game Mash, you take control of two quirky characters, each with their own unique powers and abilities. Imagine one being a delicious burger, ready to flip and sizzle, while the other could be anything from a quirky sidekick to an unpredictable element with special skills! Your goal is to work together, using the strengths of each character to overcome challenges, solve puzzles, and defeat any obstacles in your path. Whether it’s using the burger's tasty moves or the special abilities of the second character, teamwork and strategy are key to success!"
+            },
+            es: {
+                howToPlay: "Cómo Jugar:",
+                description: "En Game Mash, tomas el control de dos personajes peculiares, cada uno con sus propios poderes y habilidades únicas. ¡Imagina que uno es una deliciosa hamburguesa, lista para voltear y chisporrotear, mientras que el otro puede ser cualquier cosa, desde un compañero extravagante hasta un elemento impredecible con habilidades especiales! Tu objetivo es trabajar en equipo, utilizando las fortalezas de cada personaje para superar desafíos, resolver acertijos y derrotar cualquier obstáculo en tu camino. ¡Ya sea usando los movimientos sabrosos de la hamburguesa o las habilidades especiales del segundo personaje, el trabajo en equipo y la estrategia son clave para el éxito!"
+            },
+            fr: {
+                howToPlay: "Comment Jouer :",
+                description: "Dans Game Mash, vous contrôlez deux personnages excentriques, chacun ayant ses propres pouvoirs et capacités uniques. Imaginez que l'un est un délicieux burger, prêt à être retourné et à grésiller, tandis que l'autre peut être n'importe quoi, d'un acolyte original à un élément imprévisible avec des compétences spéciales ! Votre objectif est de travailler ensemble, en utilisant les forces de chaque personnage pour surmonter des défis, résoudre des énigmes et vaincre tous les obstacles sur votre chemin. Que ce soit en utilisant les mouvements savoureux du burger ou les capacités spéciales du deuxième personnage, le travail d'équipe et la stratégie sont essentiels au succès !"
+            }
+        };
+
+        document.getElementById("language-select").addEventListener("change", function() {
+            const selectedLanguage = this.value;
+            document.getElementById("how-to-play-title").textContent = translations[selectedLanguage].howToPlay;
+            document.getElementById("game-description-text").textContent = translations[selectedLanguage].description;
+        });
+    </script>
 </body>
 </html>

@@ -330,21 +330,21 @@ button:hover {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #fff;
-    color: #333;
+    background-color: #fff7f77d;
+    color: #000000;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgb(0, 0, 0);
 }
 
 h1, h2 {
-    color: #333;
+    color: #000000;
     text-align: center;
 }
 
 .post-thought {
     margin-bottom: 30px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #fff7f77d;
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -353,7 +353,7 @@ textarea {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #251e2525;
     font-size: 1em;
     resize: vertical;
 }
@@ -378,7 +378,7 @@ button:hover {
 }
 
 .discord-section {
-    background-color: #f9f9f9;
+    background-color: #fff7f77d;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -406,7 +406,7 @@ button:hover {
 }
 
 .thought {
-    background-color: #f9f9f9;
+    background-color: #fff7f77d;
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
@@ -640,7 +640,7 @@ button:hover {
 }
 
 .chat-input button {
-    background: orange;
+    background: rgb(255, 196, 0);
     color: white;
     border: none;
     padding: 8px 15px;

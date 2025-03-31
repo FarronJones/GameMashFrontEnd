@@ -1,88 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility -->
-    <title>Play</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="navbar.js" defer></script> 
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <div id="navbar"></div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility -->
+        <title>Play</title>
+        <link rel="stylesheet" href="style.css"> 
+        <script src="navbar.js" defer></script> 
+        <script src="script.js" defer></script>
+        <script src="play.js" defer></script>
+    </head>
+    <body>
+        <div id="navbar"></div>
 
-    <div class="game-container">
-        <div class="game-screen"></div>
-    </div>
-
-    <div class="settings-container">
-        <div class="settings-bar" id="settingsBtn">⚙ Settings</div>
-        <div class="exclamation">!</div>
-        <div class="fullscreen" id="fullscreenBtn">&#x26F6;</div>
-    </div>
-
-    <div class="settings-panel" id="settingsPanel">
-        <button class="close-btn" id="closeSettings">X</button>
-        <label for="graphicsQuality">Graphics Quality:</label>
-        <input type="range" id="graphicsQuality" min="1" max="5" value="3">
-        
-        <label for="sound">Sound Volume:</label>
-        <input type="range" id="sound" min="0" max="100" value="50">
-        
-        <label for="music">Music Volume:</label>
-        <input type="range" id="music" min="0" max="100" value="50">
-        
-        <div class="reset-btn" id="resetBtn">Reset to Default</div>
-        
-    </div>
-
-    <div class="bottom-section">
-        <div class="controls">
-            <h2>Controls:</h2>
-            <ul>
-                <li>W - Move Up</li>
-                <li>S - Move Down</li>
-                <li>A - Move Left</li>
-                <li>D - Move Right</li>
-            </ul>
+        <div class="game-container">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
 
-        <div class="chat">
-            <h2>Live Chat:</h2>
-            <div id="chatBox" class="chat-box"></div>
-            <p class="guest-message">If you want people to see your profile, login/signup.</p>
-            <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Type a message...">
-                <button id="sendBtn">Send</button>
+        <div class="settings-container">
+            <div class="settings-bar" id="settingsBtn">⚙ Settings</div>
+            <div class="exclamation">!</div>
+            <div class="fullscreen" id="fullscreenBtn">&#x26F6;</div>
+        </div>
+
+        <div class="settings-panel" id="settingsPanel">
+            <button class="close-btn" id="closeSettings">X</button>
+            <label for="graphicsQuality">Graphics Quality:</label>
+            <input type="range" id="graphicsQuality" min="1" max="5" value="3">
+            
+            <label for="sound">Sound Volume:</label>
+            <input type="range" id="sound" min="0" max="100" value="50">
+            
+            <label for="music">Music Volume:</label>
+            <input type="range" id="music" min="0" max="100" value="50">
+            
+            <div class="reset-btn" id="resetBtn">Reset to Default</div>
+            
+        </div>
+
+        <div class="bottom-section">
+            <div class="controls">
+                <h2>Controls:</h2>
+                <ul>
+                    <li>W - Move Up</li>
+                    <li>S - Move Down</li>
+                    <li>A - Move Left</li>
+                    <li>D - Move Right</li>
+                </ul>
+            </div>
+
+            <div class="chat">
+                <h2>Live Chat:</h2>
+                <div id="chatBox" class="chat-box"></div>
+                <p class="guest-message">If you want people to see your profile, login/signup.</p>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type a message...">
+                    <button id="sendBtn">Send</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const settingsPanel = document.getElementById("settingsPanel");
-            const settingsBtn = document.getElementById("settingsBtn");
-            const closeSettings = document.getElementById("closeSettings");
-            const resetBtn = document.getElementById("resetBtn");
-    
-            settingsBtn.addEventListener('click', () => {
-                console.log('Settings button clicked');
-                settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'flex' : 'none';
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const settingsPanel = document.getElementById("settingsPanel");
+                const settingsBtn = document.getElementById("settingsBtn");
+                const closeSettings = document.getElementById("closeSettings");
+                const resetBtn = document.getElementById("resetBtn");
+        
+                settingsBtn.addEventListener('click', () => {
+                    console.log('Settings button clicked');
+                    settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'flex' : 'none';
+                });
+        
+                closeSettings.addEventListener("click", () => {
+                    settingsPanel.style.display = "none";
+                });
+        
+                resetBtn.addEventListener("click", () => {
+                    console.log('Reset button clicked');
+                    document.getElementById("graphicsQuality").value = 3;
+                    document.getElementById("sound").value = 50;
+                    document.getElementById("music").value = 50;
+                });
             });
-    
-            closeSettings.addEventListener("click", () => {
-                settingsPanel.style.display = "none";
-            });
-    
-            resetBtn.addEventListener("click", () => {
-                console.log('Reset button clicked');
-                document.getElementById("graphicsQuality").value = 3;
-                document.getElementById("sound").value = 50;
-                document.getElementById("music").value = 50;
-            });
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
     

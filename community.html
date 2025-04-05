@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility -->
-    <title>Community</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="navbar.js" defer></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Community</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="navbar.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="navbar">Community Hub</div>
-    <section class="community-section">
-        <h1>Welcome to the Community!</h1>
+  <div id="navbar">Community Hub</div>
+  <section class="community-section">
+    <h1>Welcome to the Community!</h1>
 
-        <div class="post-thought">
-            <h2>Share Your Thoughts</h2>
-            <textarea id="thought-input" placeholder="What's on your mind?" rows="4"></textarea>
-            <button onclick="postThought()">Post</button>
-        </div>
+    <div class="post-thought">
+      <h2>Share Your Thoughts</h2>
+      <textarea id="thought-input" placeholder="What's on your mind?" rows="4"></textarea>
+      <button onclick="postThought()">Post</button>
+    </div>
 
-        <div class="thoughts-display">
-            <h2>Recent Thoughts</h2>
-            <div id="thoughts-container" class="thoughts-container"></div>
-        </div>
+    <div class="thoughts-display">
+      <h2>Recent Thoughts <span id="toggle-thoughts" class="toggle-arrow">▼</span></h2>
+      <div id="thoughts-container" class="thoughts-container active"></div>
+    </div>
 
-        <div class="discord-section">
-            <h2>Join Our Discord Server</h2>
-            <p>Stay connected with the community on Discord!</p>
-            <a href="https://discord.gg/x6KjVnsE" target="_blank" class="discord-link">Join Our Discord</a>
-        </div>
-    </section>
+    <div class="discord-section">
+      <h2>Join Our Discord Server <span id="toggle-discord" class="toggle-arrow">▼</span></h2>
+      <div id="discord-content" class="discord-content active">
+        <p>Stay connected with the community on Discord!</p>
+        <a href="https://discord.gg/x6KjVnsE" target="_blank" class="discord-link">Join Our Discord</a>
+      </div>
+    </div>
+  </section>
 </body>
-</html> 
+</html>

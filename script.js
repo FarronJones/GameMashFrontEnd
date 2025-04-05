@@ -266,50 +266,59 @@
                 // Fullscreen logic (if necessary)
             });
         });
-        /* Community Section Styling */
-        function postThought() {
+        //community 
+        document.getElementById("toggle-thoughts").addEventListener("click", function () {
+            const container = document.getElementById("thoughts-container");
+            const arrow = document.getElementById("toggle-thoughts");
+            container.classList.toggle("active");
+            arrow.classList.toggle("rotate");
+          });
+          
+          document.getElementById("toggle-discord").addEventListener("click", function () {
+            const content = document.getElementById("discord-content");
+            const arrow = document.getElementById("toggle-discord");
+            content.classList.toggle("active");
+            arrow.classList.toggle("rotate");
+          });
+          
+          function postThought() {
             const thoughtInput = document.getElementById("thought-input");
-            const thoughtsContainer = document.getElementById("thoughts-container");
-        
+            const container = document.getElementById("thoughts-container");
+          
             if (thoughtInput.value.trim() === "") {
-                alert("Please enter a thought before posting!");
-                return;
+              alert("Please enter a thought before posting!");
+              return;
             }
-        
+          
             const newThought = document.createElement("div");
             newThought.classList.add("thought");
-            newThought.style.transition = "transform 0.3s ease-in-out";
-        
-            const thoughtText = document.createElement("p");
-            thoughtText.textContent = thoughtInput.value;
-            newThought.appendChild(thoughtText);
-        
-            const editButton = createButton("✏️ Edit", "#F5A623", () => {
-                const newText = prompt("Edit your comment:", thoughtText.textContent);
-                if (newText) {
-                    thoughtText.textContent = newText;
-                }
+          
+            const content = document.createElement("p");
+            content.textContent = thoughtInput.value;
+          
+            const timestamp = document.createElement("small");
+            timestamp.textContent = `Posted on: ${new Date().toLocaleString()}`;
+          
+            const actions = document.createElement("div");
+            actions.classList.add("actions");
+
+            const editBtn = createButton("✏️ Edit", () => {
+              const newText = prompt("Edit your comment:", content.textContent);
+              if (newText) {
+                content.textContent = newText;
+              }
             });
-        
-            const replyButton = createButton("💬 Reply", "#50C878", () => {
-                const replyText = prompt("Enter your reply:");
-                if (replyText) {
-                    const reply = document.createElement("div");
-                    reply.classList.add("reply");
-                    reply.innerHTML = `<p><strong>You:</strong> ${replyText}</p>`;
-                    newThought.appendChild(reply);
-                }
+          
+            const deleteBtn = createButton("❌ Delete", () => {
+              if (confirm("Delete this comment?")) newThought.remove();
             });
-        
-            const deleteButton = createButton("❌ Delete", "#FF6F61", () => {
-                newThought.remove();
-            });
-        
-            const reactButton = document.createElement("button");
-            reactButton.textContent = "😊 React";
-            reactButton.style.backgroundColor = "#9B59B6";
-            reactButton.style.color = "white";
-        
+          
+            const replyBtn = createButton("💬 Reply", () => toggleReplyBox(newThought));
+          
+            const reactBtn = document.createElement("button");
+            reactBtn.textContent = "😊 React";
+            reactBtn.classList.add("react-btn");
+          
             const emojiContainer = document.createElement("div");
             emojiContainer.style.display = "none";
             emojiContainer.style.position = "absolute";
@@ -318,48 +327,113 @@
             emojiContainer.style.borderRadius = "5px";
             emojiContainer.style.padding = "5px";
             emojiContainer.style.zIndex = "10";
-        
-            const emojis = ["😊", "😢", "😡", "❤️", "😂", "👍"];
+          
+            const emojis = ["😊", "😢", "😡", "❤️", "😂", "👍", "😮"];
             emojis.forEach(emoji => {
-                const emojiButton = document.createElement("button");
-                emojiButton.textContent = emoji;
-                emojiButton.style.background = "transparent";
-                emojiButton.style.border = "none";
-                emojiButton.style.fontSize = "20px";
-                emojiButton.onclick = () => {
-                    const emojiReact = document.createElement("span");
-                    emojiReact.textContent = emoji;
-                    emojiReact.style.marginRight = "5px";
-                    newThought.appendChild(emojiReact);
-                    emojiContainer.style.display = "none";
-                };
-                emojiContainer.appendChild(emojiButton);
+              const emojiButton = document.createElement("button");
+              emojiButton.textContent = emoji;
+              emojiButton.classList.add("emoji-btn");
+              emojiButton.onclick = () => {
+                const emojiReact = document.createElement("span");
+                emojiReact.textContent = emoji;
+                emojiReact.style.marginRight = "5px";
+                newThought.insertBefore(emojiReact, actions);
+                emojiContainer.style.display = "none";
+              };
+              emojiContainer.appendChild(emojiButton);
             });
-        
-            reactButton.onclick = () => {
-                emojiContainer.style.display = emojiContainer.style.display === "none" ? "block" : "none";
+          
+            reactBtn.onclick = () => {
+              emojiContainer.style.display = emojiContainer.style.display === "none" ? "block" : "none";
             };
-        
-            const thoughtDate = document.createElement("small");
-            thoughtDate.textContent = `Posted on: ${new Date().toLocaleString()}`;
-        
-            newThought.appendChild(editButton);
-            newThought.appendChild(replyButton);
-            newThought.appendChild(deleteButton);
-            newThought.appendChild(reactButton);
+          
+            actions.appendChild(editBtn);
+            actions.appendChild(replyBtn);
+            actions.appendChild(deleteBtn);
+            actions.appendChild(reactBtn);
+            newThought.appendChild(content);
             newThought.appendChild(emojiContainer);
-            newThought.appendChild(thoughtDate);
-        
-            thoughtsContainer.appendChild(newThought);
+            newThought.appendChild(actions);
+            newThought.appendChild(timestamp);
+          
+            const repliesContainer = document.createElement("div");
+            repliesContainer.classList.add("replies");
+            newThought.appendChild(repliesContainer);
+          
+            container.appendChild(newThought);
             thoughtInput.value = "";
-        }
-        
-        function createButton(text, color, onClickAction) {
+          }
+          
+          function createButton(text, onClickAction) {
             const button = document.createElement("button");
             button.textContent = text;
-            button.style.backgroundColor = color;
-            button.style.color = "white";
             button.onclick = onClickAction;
             return button;
-        }
-        
+          }
+          
+          function toggleReplyBox(parentThought) {
+            let replyBox = parentThought.querySelector(".reply-box");
+          
+            if (replyBox) {
+              replyBox.remove();
+            } else {
+              replyBox = document.createElement("div");
+              replyBox.classList.add("reply-box");
+          
+              const textarea = document.createElement("textarea");
+              textarea.rows = 2;
+              textarea.placeholder = "Write a reply...";
+          
+              const postBtn = document.createElement("button");
+              postBtn.textContent = "Post Reply";
+              postBtn.onclick = () => {
+                if (textarea.value.trim() === "") return;
+          
+                const reply = document.createElement("div");
+                reply.classList.add("reply");
+          
+                const replyText = document.createElement("p");
+                replyText.textContent = textarea.value;
+          
+                const replyActions = document.createElement("div");
+                replyActions.classList.add("actions");
+          
+                const emojis = ["😊", "😢", "😡", "❤️", "😂", "👍", "😮"];
+                emojis.forEach(emoji => {
+                  let count = 0;
+                  const btn = document.createElement("button");
+                  btn.textContent = `${emoji} ${count}`;
+                  btn.onclick = () => {
+                    count++;
+                    btn.textContent = `${emoji} ${count}`;
+                  };
+                  replyActions.appendChild(btn);
+                });
+          
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "❌ Delete";
+                deleteBtn.onclick = () => {
+                  if (confirm("Delete this reply?")) reply.remove();
+                };
+          
+                replyActions.appendChild(deleteBtn);
+                reply.appendChild(replyText);
+                reply.appendChild(replyActions);
+                parentThought.querySelector(".replies").appendChild(reply);
+                replyBox.remove();
+              };
+          
+              replyBox.appendChild(textarea);
+              replyBox.appendChild(postBtn);
+              parentThought.appendChild(replyBox);
+            }
+          }
+          emojiButton.onclick = () => {
+            const emojiReact = document.createElement("span");
+            emojiReact.textContent = emoji;
+            emojiReact.classList.add("emoji-reacted"); 
+            emojiReact.style.marginRight = "5px";
+            newThought.insertBefore(emojiReact, actions);
+            emojiContainer.style.display = "none";
+          };
+          

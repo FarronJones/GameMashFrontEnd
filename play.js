@@ -1,61 +1,87 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d"); // Get the 2D drawing context
-    let playerDiv = document.querySelector("#player"); // You can remove this as it won't be needed
+    const ctx = canvas.getContext("2d");
 
-    if (!canvas) {
+    if (!canvas || !ctx) {
         console.error("Canvas not found!");
         return;
     }
 
-    const socket = new WebSocket("ws://localhost:8081/game");
+    const socket = new WebSocket("ws://localhost:8081/game"); // adjust port if needed
 
-    // Handle WebSocket connection
+    let gameState = null;
+
     socket.onopen = () => {
-        console.log("Connected to Game!");
+        console.log("✅ Connected to game server.");
+        socket.send(JSON.stringify({ action: "startGame" }));
     };
 
-    // Handle incoming messages (game state updates)
     socket.onmessage = (event) => {
         try {
-            const gameState = JSON.parse(event.data);
-            updateGameScreen(gameState);
-        } catch (error) {
-            console.error("Error parsing game state:", error);
+            const data = JSON.parse(event.data);
+            gameState = data;
+            drawGame(data);
+        } catch (err) {
+            console.error("❌ Error parsing message:", err);
         }
     };
 
-    // Handle player key presses (sending actions to backend)
-    document.addEventListener("keydown", (event) => {
-        if (["w", "a", "s", "d"].includes(event.key.toLowerCase())) {
-            socket.send(event.key); // Send the action to the backend
+    socket.onclose = () => {
+        console.log("🔌 Disconnected from game server.");
+    };
+
+    document.addEventListener("keydown", (e) => {
+        const key = e.key.toLowerCase();
+
+        switch (key) {
+            case "a":
+                socket.send(JSON.stringify({ action: "moveLeft" }));
+                break;
+            case "d":
+                socket.send(JSON.stringify({ action: "moveRight" }));
+                break;
+            case "w":
+            case " ":
+                socket.send(JSON.stringify({ action: "jump" }));
+                break;
+            case "p":
+                socket.send(JSON.stringify({ action: "pause" }));
+                break;
+            case "u":
+                socket.send(JSON.stringify({ action: "unpause" }));
+                break;
+            case "r":
+                socket.send(JSON.stringify({ action: "resetGame" }));
+                break;
+            case "m":
+                socket.send(JSON.stringify({ action: "toggleMusic" }));
+                break;
+            case "s":
+                socket.send(JSON.stringify({ action: "toggleSfx" }));
+                break;
         }
     });
 
-    // Handle WebSocket closure
-    socket.onclose = () => {
-        console.log("Disconnected from Game.");
-    };
+    document.addEventListener("keyup", () => {
+        socket.send(JSON.stringify({ action: "stop" }));
+    });
 
-    // Function to update the game screen with the latest player state
-    function updateGameScreen(gameState) {
-        if (!gameState) return;
+    function drawGame(state) {
+        if (!state || !state.player) return;
 
-        // Clear the canvas before drawing new frame
+        const { player, gamestate, paused, gameOver } = state;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // You can render the player, game elements, etc., on the canvas
-        // For example, drawing a player as a red circle
-        ctx.fillStyle = "red"; // Set player color
-        ctx.beginPath();
-        ctx.arc(gameState.playerX * 50, gameState.playerY * 50, 15, 0, Math.PI * 2);
-        ctx.fill(); // Draw the player
+        // Draw player as a red square
+        ctx.fillStyle = "red";
+        ctx.fillRect(player.x, player.y, player.width, player.height);
 
-        // Optional: Display the score and other game info as text
-        ctx.fillStyle = "black"; // Set text color
-        ctx.font = "20px Arial";
-        ctx.fillText(`Player: ${gameState.playerId} | Score: ${gameState.score}`, 10, 30);
-
-        // You can add more game elements, like obstacles, backgrounds, etc.
+        // Draw status text
+        ctx.fillStyle = "black";
+        ctx.font = "18px monospace";
+        ctx.fillText(`State: ${gamestate}`, 10, 25);
+        if (paused) ctx.fillText("⏸️ Paused", 10, 50);
+        if (gameOver) ctx.fillText("💀 Game Over", 10, 75);
     }
 });

@@ -5,8 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const email = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+
+            console.log("🔐 Login Attempt:");
+            console.log("Email:", email);
+            console.log("Password:", password);
 
             try {
                 const res = await axios.post("http://localhost:8081/api/auth/login", {
@@ -14,12 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     password
                 });
 
+                console.log("✅ Login Response:", res.data);
                 alert(res.data); // show backend response
-                console.log("Login successful:", res.data);
 
             } catch (err) {
+                console.error("❌ Login failed:", err.response?.data || err.message);
                 alert("Login failed");
-                console.error(err);
             }
         });
     }
@@ -32,16 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
             const avatar = document.querySelector('input[name="avatar"]:checked')?.value || "";
-
-            const userId = Math.floor(Math.random() * 10000); // temp ID or auto-generate from DB
-            const firstName = "F"; // Replace with actual input if available
-            const lastName = "L";
             const avatarid = mapAvatarToId(avatar);
+
+            console.log("📝 Signup Attempt:");
+            console.log("Email:", email);
+            console.log("Password:", password);
+            console.log("First Name:", firstName);
+            console.log("Last Name:", lastName);
+            console.log("Avatar:", avatar, "Mapped Avatar ID:", avatarid);
 
             try {
                 const res = await axios.post("http://localhost:8081/api/auth/signup", {
-                    userId,
                     email,
                     password,
                     firstName,
@@ -49,12 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     avatarid
                 });
 
+                console.log("✅ Signup Response:", res.data);
                 alert(res.data);
-                console.log("Signup successful:", res.data);
 
             } catch (err) {
+                console.error("❌ Signup failed:", err.response?.data || err.message);
                 alert("Signup failed");
-                console.error(err);
             }
         });
     }

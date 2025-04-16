@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sign Up</title>
+    
+    <!-- Scripts -->
     <script src="navbar.js" defer></script>
     <script src="showPassword.js" defer></script>
     <script src="updateAvatarProf.js" defer></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="signup-page">
@@ -18,16 +22,31 @@
 
     <div class="auth-container">
         <form method="POST">
+            <!-- First Name -->
+            <div class="input-container">
+                <img src="Images/profile-icon.jpg" alt="First Name Icon" class="input-icon">
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="input-container">
+                <img src="Images/profile-icon.jpg" alt="Last Name Icon" class="input-icon">
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            </div>
+
+            <!-- Username -->
             <div class="input-container">
                 <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
                 <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
-            
+
+            <!-- Email -->
             <div class="input-container">
                 <img src="Images/email-icon.jpg" alt="Email Icon" class="input-icon">
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
 
+            <!-- Password -->
             <div class="input-container">
                 <img src="Images/key-icon.jpg" alt="Password Icon" class="input-icon">
                 <input type="password" id="password" name="password" placeholder="Password" required>
@@ -37,6 +56,7 @@
                      onmouseleave="togglePassword(false, 'password')">
             </div>
 
+            <!-- Confirm Password -->
             <div class="input-container">
                 <img src="Images/key-icon.jpg" alt="Confirm Password Icon" class="input-icon">
                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
@@ -45,39 +65,39 @@
                      onmouseup="togglePassword(false, 'confirm-password')" 
                      onmouseleave="togglePassword(false, 'confirm-password')">
             </div>
-            
 
             <!-- Avatar Selection -->
-    <h3>Choose Your Avatar</h3>
-    <div class="avatar-selection">
-        <label>
-            <input type="radio" name="avatar" value="avatar1.avif" required>
-            <img src="Images/avatar1.avif" class="avatar" alt="Avatar 1">
-        </label>
-       
-        <label>
-            <input type="radio" name="avatar" value="avatar2.png">
-            <img src="Images/avatar2.png" class="avatar" alt="Avatar 2">
-        </label>
-      
-        <label>
-            <input type="radio" name="avatar" value="avatar3.png">
-            <img src="Images/avatar3.png" class="avatar" alt="Avatar 3">
-        </label>
-        <label>
-            <input type="radio" name="avatar" value="avatar4.png">
-            <img src="Images/avatar4.png" class="avatar" alt="Avatar 4">
-        </label>
+            <h3>Choose Your Avatar</h3>
+            <div class="avatar-selection">
+                <label>
+                    <input type="radio" name="avatar" value="avatar1.avif" required>
+                    <img src="Images/avatar1.avif" class="avatar" alt="Avatar 1">
+                </label>
+                <label>
+                    <input type="radio" name="avatar" value="avatar2.png">
+                    <img src="Images/avatar2.png" class="avatar" alt="Avatar 2">
+                </label>
+                <label>
+                    <input type="radio" name="avatar" value="avatar3.png">
+                    <img src="Images/avatar3.png" class="avatar" alt="Avatar 3">
+                </label>
+                <label>
+                    <input type="radio" name="avatar" value="avatar4.png">
+                    <img src="Images/avatar4.png" class="avatar" alt="Avatar 4">
+                </label>
+            </div>
+
+            <!-- Profile Picture Display -->
+            <div class="profile-pic-container">
+                <img id="profile-pic" class="profile-pic" src="Images/logoGAMEMASH.JPG" alt="Profile Picture">
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
     </div>
 
-    <!-- Profile Picture Display -->
-    <div class="profile-pic-container">
-        <img id="profile-pic" class="profile-pic" src="Images/logoGAMEMASH.JPG" alt="Profile Picture">
-    </div>
-
-    <button type="submit">Sign Up</button>
-</form>
-</div>
-<script src="app.js" defer></script>
+    <!-- Axios and your JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js" defer></script>
 </body>
 </html>

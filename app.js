@@ -19,7 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 console.log("✅ Login Response:", res.data);
-                alert(res.data); // show backend response
+
+                if (res.data.message === "Login successful") {
+                    const firstName = res.data.firstName;
+                    const avatarid = res.data.avatarid;
+                    const avatar = mapIdToAvatar(avatarid);
+
+                    // Store info in localStorage
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("firstName", firstName);
+                    localStorage.setItem("avatar", avatar);
+
+                    alert("Login successful!");
+                    window.location.href = "/index.html";
+                } else {
+                    alert(res.data);
+                }
 
             } catch (err) {
                 console.error("❌ Login failed:", err.response?.data || err.message);
@@ -60,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("✅ Signup Response:", res.data);
                 alert(res.data);
 
+                // No localStorage set here — wait until login
             } catch (err) {
                 console.error("❌ Signup failed:", err.response?.data || err.message);
                 alert("Signup failed");
@@ -75,5 +91,15 @@ function mapAvatarToId(filename) {
         case 'avatar3.png': return 3;
         case 'avatar4.png': return 4;
         default: return null;
+    }
+}
+
+function mapIdToAvatar(id) {
+    switch (id) {
+        case 1: return 'avatar1.avif';
+        case 2: return 'avatar2.png';
+        case 3: return 'avatar3.png';
+        case 4: return 'avatar4.png';
+        default: return 'profile-placeholder.png';
     }
 }

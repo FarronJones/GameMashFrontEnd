@@ -5,12 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
         subMenu.classList.toggle("open-menu");
     }
 
-    // Set the innerHTML for the navbar
+    // Grab values from localStorage
+    const storedName = localStorage.getItem("firstName");
+    const storedAvatar = localStorage.getItem("avatar");
+    const isLoggedIn = localStorage.getItem("email");
+
+    // Build the navbar
     document.getElementById("navbar").innerHTML = `
         <nav>
-
-        
-            <!-- Logo of the website -->
             <div class="nav-container">
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -19,61 +21,43 @@ document.addEventListener("DOMContentLoaded", function () {
                     <li><a href="community.html">Community</a></li>
                 </ul>
 
-
                 <div class="auth-section">
-                  <a href="login.html" class="auth-link">Login / Signup</a>
-                    <!-- User profile picture that triggers the drop-down menu -->
-                    <img src="./Images/profile-placeholder.png" 
-                         class="profile-pic">
+                    ${isLoggedIn ? '' : '<a href="login.html" class="auth-link">Login / Signup</a>'}
+                    <img src="./Images/${storedAvatar || 'profile-placeholder.png'}" 
+                         class="profile-pic" 
+                         alt="Profile Picture">
                 </div>
 
-
-                <!-- Wrapper for the sub-menu -->
                 <div class="sub-menu-wrap" id="SubMenu">
                     <div class="sub-menu">
                         <div class="user-info">
-
-
-                            <!-- Placeholder image and user info -->
-                             <img src="./Images/profile-placeholder.png">
-                            <h3>USER</h3>
+                            <img src="./Images/${storedAvatar || 'profile-placeholder.png'}" alt="User Avatar">
+                            <h3>${storedName || 'USER'}</h3>
                         </div>
-
-                        <!-- Separator line -->
                         <hr>
-
-
-                        <!-- Menu links -->
-                        <a href="#" class="sub-menu-link">
-                            
-                            <p>Edit Profile</p>
-                            <span>></span>
-                        </a>
-                        <a href="#" class="sub-menu-link">
-                             
-                            <p>Settings & Privacy</p>
-                            <span>></span>
-                        </a>
-                        <a href="#" class="sub-menu-link">
-                             
-                            <p>Help & Support</p>
-                            <span>></span>
-                        </a>
-                        <a href="#" class="sub-menu-link">
-                             
-                            <p>Logout</p>
-                            <span>></span>
-                        </a>
+                        <a href="#" class="sub-menu-link"><p>Edit Profile</p><span>></span></a>
+                        <a href="#" class="sub-menu-link"><p>Settings & Privacy</p><span>></span></a>
+                        <a href="#" class="sub-menu-link"><p>Help & Support</p><span>></span></a>
+                        <a href="#" class="sub-menu-link" id="logout-link"><p>Logout</p><span>></span></a>
                     </div>
                 </div>
             </div>
         </nav>
     `;
 
-    // Attach the event listener programmatically after innerHTML is set
+    // Toggle dropdown menu
     document.querySelector(".profile-pic").addEventListener("click", toggleMenu);
-});
 
+    // Logout functionality
+    const logoutLink = document.getElementById("logout-link");
+    if (logoutLink) {
+        logoutLink.addEventListener("click", () => {
+            localStorage.clear();
+            alert("You’ve been logged out.");
+            window.location.href = "login.html";
+        });
+    }
+});
 
 
 /*document.addEventListener("DOMContentLoaded", function () {

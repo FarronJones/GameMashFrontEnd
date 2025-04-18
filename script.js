@@ -1,25 +1,29 @@
         //Play.html
         document.getElementById("sendBtn").addEventListener("click", function() {
-            const inputField = document.getElementById("chatInput");
-            const chatBox = document.getElementById("chatBox");
-            const message = inputField.value.trim();
-
-            if (message !== "") {
-                const newMessage = document.createElement("div");
-                newMessage.classList.add("user-message");
-                
-                newMessage.innerHTML = `
-                    <img src="images/profile-placeholder.png" alt="Guest"> <!-- You can replace guest.png with the path to your profile picture -->
-                    <span><strong>Guest:</strong> ${message}</span>
-                `;
-                
-                chatBox.appendChild(newMessage);
-                chatBox.scrollTop = chatBox.scrollHeight; 
-                inputField.value = "";
-            } else {
-                console.log("Empty message, not sending.");
-            }
-        });
+          const inputField = document.getElementById("chatInput");
+          const chatBox = document.getElementById("chatBox");
+          const message = inputField.value.trim();
+      
+          if (message !== "") {
+              const newMessage = document.createElement("div");
+              newMessage.classList.add("user-message");
+      
+              // ✅ Get profile info from localStorage
+              const firstName = localStorage.getItem("firstName") || "Guest";
+              const avatar = localStorage.getItem("avatar") || "profile-placeholder.png";
+      
+              newMessage.innerHTML = `
+                  <img src="images/${avatar}" alt="${firstName}">
+                  <span><strong>${firstName}:</strong> ${message}</span>
+              `;
+      
+              chatBox.appendChild(newMessage);
+              chatBox.scrollTop = chatBox.scrollHeight;
+              inputField.value = "";
+          } else {
+              console.log("Empty message, not sending.");
+          }
+      });
 
         document.getElementById("chatInput").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {

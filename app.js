@@ -1,6 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // LOGIN FORM
+document.addEventListener("DOMContentLoaded", async () => {
     const loginForm = document.querySelector('.login-page form');
+    const signupForm = document.querySelector('.signup-page form');
+    const editForm = document.getElementById("edit-profile-form");
+
+    // LOGIN FORM
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -25,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const avatarid = res.data.avatarid;
                     const avatar = mapIdToAvatar(avatarid);
 
-                    // Store info in localStorage
                     localStorage.setItem("email", email);
                     localStorage.setItem("firstName", firstName);
                     localStorage.setItem("avatar", avatar);
@@ -44,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // SIGNUP FORM
-    const signupForm = document.querySelector('.signup-page form');
     if (signupForm) {
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -73,17 +74,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 console.log("✅ Signup Response:", res.data);
-                alert(res.data);
-
-                // No localStorage set here — wait until login
+                alert("Signup successful! Redirecting to login...");
+                window.location.href = "login.html";
             } catch (err) {
                 console.error("❌ Signup failed:", err.response?.data || err.message);
                 alert("Signup failed");
             }
         });
     }
+
+    // EDIT PROFILE
+    if (editForm) {
+        const email = localStorage.getItem("email");
+
+        try {
+            const res = await axios.get(`http://localhost:8081/api/auth/player/${email}`);
+            const player = res.data;
+
+            document.getElementById("edit-first-name").value = player.firstName;
+            document.getElementById("edit-last-name").value = player.lastName;
+            document.getElementById("edit-email").value = player.email;
+
+            const avatarValue = `avatar${player.avatarid}.${player.avatarid === 1 ? 'avif' : 'png'}`;
+            const avatarRadio = document.querySelector(`input[name="avatar"][value="${avatarValue}"]`);
+            if (avatarRadio) avatarRadio.checked = true;
+        } catch (err) {
+            console.error("Error fetching profile:", err);
+            alert("Could not load profile data.");
+        }
+
+        editForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const updatedFirstName = document.getElementById("edit-first-name").value;
+            const updatedLastName = document.getElementById("edit-last-name").value;
+            const updatedEmail = document.getElementById("edit-email").value;
+            const avatar = document.querySelector('input[name="avatar"]:checked')?.value;
+            const avatarid = mapAvatarToId(avatar);
+
+            try {
+                await axios.put(`http://localhost:8081/api/auth/player/update`, {
+                    email: updatedEmail,
+                    firstName: updatedFirstName,
+                    lastName: updatedLastName,
+                    avatarid
+                });
+
+                localStorage.setItem("firstName", updatedFirstName);
+                localStorage.setItem("avatar", avatar);
+
+                alert("Profile updated!");
+                window.location.href = "/index.html";
+            } catch (err) {
+                console.error("Profile update failed:", err);
+                alert("Failed to update profile.");
+            }
+        });
+    }
 });
 
+// Helpers
 function mapAvatarToId(filename) {
     switch (filename) {
         case 'avatar1.avif': return 1;

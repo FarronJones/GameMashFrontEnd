@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Settings & Privacy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="navbar.js" defer></script>
+  <script src="language.js" defer></script> <!-- ✅ Language support -->
+  <style>
+    .settings-wrapper {
+      margin-top: 100px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeInSettings 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInSettings {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .settings-title {
+      font-size: 2.2rem;
+      color: white;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .settings-group {
+      margin-bottom: 30px;
+    }
+
+    .settings-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .settings-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .settings-group select:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+      outline: none;
+    }
+
+    .status-msg {
+      margin-top: 10px;
+      color: lightgreen;
+      font-size: 1rem;
+      animation: fadeText 1s ease-in-out;
+    }
+
+    @keyframes fadeText {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .save-btn {
+      margin-top: 20px;
+      background: #6200ea;
+      padding: 12px 25px;
+      border-radius: 25px;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .save-btn:hover {
+      background: #3700b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="settings-wrapper">
+    <h1 id="settings-title" class="settings-title">Settings & Privacy</h1>
+    <div class="settings-group">
+      <label id="language-label" for="language-select">🌐 Choose your preferred language:</label>
+      <select id="language-select">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+      <p id="language-status" class="status-msg">Your current language is: English</p>
+    </div>
+    <button id="save-button" class="save-btn" onclick="saveSettings()">Save Preferences</button>
+  </div>
+
+  <script>
+    const translations = {
+      en: "English",
+      es: "Español",
+      fr: "Français",
+    };
+
+    const languageSelect = document.getElementById("language-select");
+    const statusMsg = document.getElementById("language-status");
+
+    const savedLang = localStorage.getItem("lang") || "en";
+    languageSelect.value = savedLang;
+    statusMsg.textContent = `Your current language is: ${translations[savedLang]}`;
+
+    languageSelect.addEventListener("change", function () {
+      const selectedLang = this.value;
+      localStorage.setItem("lang", selectedLang);
+      statusMsg.textContent = `Your current language is: ${translations[selectedLang]}`;
+    });
+
+    function saveSettings() {
+    const selectedLang = document.getElementById("language-select").value;
+    localStorage.setItem("lang", selectedLang);
+    alert("Settings saved successfully!");
+    location.reload(); // 🔄 Reloads the current page
+}
+  </script>
+</body>
+</html>

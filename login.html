@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <script src="navbar.js" defer></script>
-    <script src="showPassword.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="navbar.js" defer></script>
+  <script src="showPassword.js" defer></script>
+  <script src="language.js" defer></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-page">
-    <div id="navbar"></div>
+  <div id="navbar"></div>
 
-    <h1 class="welcome-text">Welcome Back</h1>
-    <h2 class="player-info">Enter Player Info to Login</h2>
+  <h1 class="welcome-text" id="welcome-text">Welcome Back</h1>
+  <h2 class="player-info" id="player-info">Enter Player Info to Login</h2>
 
-    <div class="auth-container">
-        <form method="POST">
-            <div class="input-container">
-                <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
-                <input type="text" id="email" name="email" placeholder="Email" required>
-            </div>
+  <div class="auth-container">
+    <form method="POST">
+      <div class="input-container">
+        <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
+        <input type="text" id="email" name="email" placeholder="Email" data-translate-placeholder="email-placeholder" required>
+      </div>
 
-            <div class="input-container">
-                <img src="Images/key-icon.jpg" alt="Key Icon" class="input-icon">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
-                     onmousedown="togglePassword(true, 'password')" 
-                     onmouseup="togglePassword(false, 'password')" 
-                     onmouseleave="togglePassword(false, 'password')">
-            </div>
+      <div class="input-container">
+        <img src="Images/key-icon.jpg" alt="Key Icon" class="input-icon">
+        <input type="password" id="password" name="password" placeholder="Password" data-translate-placeholder="password-placeholder" required>
+        <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
+             onmousedown="togglePassword(true, 'password')" 
+             onmouseup="togglePassword(false, 'password')" 
+             onmouseleave="togglePassword(false, 'password')">
+      </div>
 
-            <button type="submit">Login</button>
-        </form>
+      <button type="submit" id="login-button">Login</button>
+    </form>
 
-        <p class="forgot-password">Forgot your password?</p>
-        <p class="or-text">Or</p>
-        <button class="google-signin">Sign in with Google</button>
-        <p class="signup-text">Don't have an account? <a href="signup.html">Sign up!</a></p>
+    <p class="forgot-password" id="forgot-password">Forgot your password?</p>
+    <p class="or-text" id="or-text">Or</p>
+    <button class="google-signin" id="google-signin">Sign in with Google</button>
+    <p class="signup-text" id="signup-text">Don't have an account?</p>
+    <div class="signup-link-container">
+      <a id="signup-link" href="signup.html">Sign up!</a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="app.js" defer></script>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,114 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility -->
-    <title>About</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="navbar.js" defer></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>About</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="navbar.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="language.js" defer></script>
 </head>
 <body>
-    <div id="navbar"></div>
-    <div class="container">
-        <div class="left-section">
-            <div class="title">FAQ's:</div>
-            <div class="animated-text" id="faqText">Welcome to the FAQ section!</div>
+  <div id="navbar"></div>
+  <div class="container">
+    <div class="left-section">
+      <div class="title" id="faq-title">FAQ's:</div>
+      <div class="animated-text" id="faqText">Welcome to the FAQ section!</div>
 
-            <div class="faq-item">
-                <div class="faq-header" onclick="toggleFAQItem(1)">
-                    <span>Can you play this game alone?</span>
-                    <svg id="arrow-1" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div id="faq-content-1" class="faq-content">
-                    <p>Game Mash is designed for co-op play, where you control two unique characters with distinct abilities. While it's meant to be played with a friend for maximum fun, playing solo is definitely possible.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-header" onclick="toggleFAQItem(2)">
-                    <span>How many levels are there?</span>
-                    <svg id="arrow-2" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div id="faq-content-2" class="faq-content">
-                    <p>There are 3 main levels with unique environments, enemies, and challenges. Each one becomes more difficult as you progress.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-header" onclick="toggleFAQItem(3)">
-                    <span>When was this game released?</span>
-                    <svg id="arrow-3" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div id="faq-content-3" class="faq-content">
-                    <p>Released in 2025, Game Mash was developed by a group of students from Saint Xavier University.</p>
-                </div>
-            </div>
-
-            <div class="video-container">
-                <h2>Watch Game Showcase:</h2>
-                <video controls>
-                    <source src="video/gameplay.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQItem(1)">
+          <span id="faq-q1">Can you play this game alone?</span>
+          <svg id="arrow-1" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </div>
-
-        <div class="right-section">
-            <div class="title">Get to Know the Creators:</div>
-            <div class="creators-box">
-                <div class="role-card" id="frontEnd">Front End 
-                    <div class="creators-content">Perla Rodriguez, Jenifer Martinez, Javier Castillo</div>
-                </div>
-                <div class="role-card" id="backend">Backend 
-                    <div class="creators-content">Wayne Sterling, Edmon Demirovski</div>
-                </div>
-                <div class="role-card" id="pm">Project Manager 
-                    <div class="creators-content">Farron Jones</div>
-                </div>
-            </div>
+        <div id="faq-content-1" class="faq-content">
+          <p id="faq-a1">Game Mash is designed for co-op play, where you control two unique characters with distinct abilities. While it's meant to be played with a friend for maximum fun, playing solo is definitely possible.</p>
         </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQItem(2)">
+          <span id="faq-q2">How many levels are there?</span>
+          <svg id="arrow-2" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div id="faq-content-2" class="faq-content">
+          <p id="faq-a2">There are 3 main levels with unique environments, enemies, and challenges. Each one becomes more difficult as you progress.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQItem(3)">
+          <span id="faq-q3">When was this game released?</span>
+          <svg id="arrow-3" class="faq-arrow w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div id="faq-content-3" class="faq-content">
+          <p id="faq-a3">Released in 2025, Game Mash was developed by a group of students from Saint Xavier University.</p>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <h2 id="watch-showcase-title">Watch Game Showcase:</h2>
+        <video controls>
+          <source src="video/gameplay.mp4" type="video/mp4" />
+          <p id="video-fallback">Your browser does not support the video tag.</p>
+        </video>
+      </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById("faqText").style.opacity = 1;
-                document.getElementById("faqText").style.transform = "translateY(0)";
-            }, 500);
+    <div class="right-section">
+      <div class="title" id="creators-title">Get to Know the Creators:</div>
+      <div class="creators-box">
+        <div class="role-card" id="frontEnd">
+          <div id="frontEnd-title" class="creator-title">Frontend</div>
+          <div class="creators-content">Perla Rodriguez, Jenifer Martinez, Javier Castillo</div>
+        </div>
+        <div class="role-card" id="backend">
+          <div id="backend-title" class="creator-title">Backend</div>
+          <div class="creators-content">Wayne Sterling, Edmon Demirovski</div>
+        </div>
+        <div class="role-card" id="pm">
+          <div id="pm-title" class="creator-title">Project Manager</div>
+          <div class="creators-content">Farron Jones</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            function revealRole(roleId, delay) {
-                setTimeout(() => {
-                    let roleCard = document.getElementById(roleId);
-                    let content = roleCard.querySelector(".creators-content");
-                    roleCard.classList.add("expand");
-                    content.classList.add("show");
-                }, delay);
-            }
-
-            revealRole("frontEnd", 1000);
-            revealRole("backend", 3000);
-            revealRole("pm", 5000);
-        });
-
-        function toggleFAQItem(id) {
-            const content = document.getElementById(`faq-content-${id}`);
-            const arrow = document.getElementById(`arrow-${id}`);
-            if (content.style.display === "block") {
-                content.style.display = "none";
-                arrow.classList.remove("rotate");
-            } else {
-                content.style.display = "block";
-                arrow.classList.add("rotate");
-            }
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(() => {
+        const faqText = document.getElementById("faqText");
+        if (faqText) {
+          faqText.style.opacity = 1;
+          faqText.style.transform = "translateY(0)";
         }
-    </script>
+      }, 500);
+
+      function revealRole(roleId, delay) {
+        setTimeout(() => {
+          const roleCard = document.getElementById(roleId);
+          const content = roleCard?.querySelector(".creators-content");
+          if (roleCard) roleCard.classList.add("expand");
+          if (content) content.classList.add("show");
+        }, delay);
+      }
+
+      revealRole("frontEnd", 1000);
+      revealRole("backend", 3000);
+      revealRole("pm", 5000);
+    });
+
+    function toggleFAQItem(id) {
+      const content = document.getElementById(`faq-content-${id}`);
+      const arrow = document.getElementById(`arrow-${id}`);
+      if (content.style.display === "block") {
+        content.style.display = "none";
+        arrow.classList.remove("rotate");
+      } else {
+        content.style.display = "block";
+        arrow.classList.add("rotate");
+      }
+    }
+  </script>
 </body>
 </html>

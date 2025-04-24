@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help & Support - GameMash</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="navbar.js" defer></script>
+  <script src="language.js" defer></script>
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <h2 class="support-title" id="support-title">Need Help?</h2>
+  <p class="support-intro" id="support-intro">
+    Use our virtual assistant on the bottom right or contact our team directly.
+  </p>
+
+  <!-- Botpress Widget Embed -->
+  
+  <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/04/24/12/20250424124657-WP6RLKS2.js"></script>
+      
+  <script>
+    window.botpressWebChat.init({
+      botId: "ad0c3087-ce66-4c01-98dd-cb5cb6c1d20a",
+      clientId: "94cef03e-6cd1-4a48-b9ed-6381f8ea3910",
+      hostUrl: "https://cdn.botpress.cloud/webchat/v2.3",
+      messagingUrl: "https://messaging.botpress.cloud",
+      containerWidth: "400px",
+      layoutWidth: "100%",
+      enableReset: true,
+      showPoweredBy: false
+    });
+  </script>
+
+</body>
+</html>

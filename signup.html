@@ -1,103 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign Up</title>
-    
-    <!-- Scripts -->
-    <script src="navbar.js" defer></script>
-    <script src="showPassword.js" defer></script>
-    <script src="updateAvatarProf.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sign Up</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Scripts -->
+  <script src="navbar.js" defer></script>
+  <script src="showPassword.js" defer></script>
+  <script src="updateAvatarProf.js" defer></script>
+  <script src="language.js" defer></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="signup-page">
-    <div id="navbar"></div>
+  <div id="navbar"></div>
 
-    <h1 class="signup-heading">Sign Up</h1>
-    <h2 class="create-account-text">Create your account</h2>
+  <h1 class="signup-heading" id="signup-heading">Sign Up</h1>
+  <h2 class="create-account-text" id="create-account-text">Create your account</h2>
 
-    <div class="auth-container">
-        <form method="POST">
-            <!-- First Name -->
-            <div class="input-container">
-                <img src="Images/profile-icon.jpg" alt="First Name Icon" class="input-icon">
-                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
-            </div>
+  <div class="auth-container">
+    <form method="POST">
+      <!-- First Name -->
+      <div class="input-container">
+        <img src="Images/profile-icon.jpg" alt="First Name Icon" class="input-icon" />
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" data-translate-placeholder="first-name-placeholder" required />
+      </div>
 
-            <!-- Last Name -->
-            <div class="input-container">
-                <img src="Images/profile-icon.jpg" alt="Last Name Icon" class="input-icon">
-                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
-            </div>
+      <!-- Last Name -->
+      <div class="input-container">
+        <img src="Images/profile-icon.jpg" alt="Last Name Icon" class="input-icon" />
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" data-translate-placeholder="last-name-placeholder" required />
+      </div>
 
-            <!-- Username -->
-            <div class="input-container">
-                <img src="Images/profile-icon.jpg" alt="Profile Icon" class="input-icon">
-                <input type="text" id="username" name="username" placeholder="Username" required>
-            </div>
+      <!-- Username -->
+      <div class="input-container">
+        <img src="Images/profile-icon.jpg" alt="Username Icon" class="input-icon" />
+        <input type="text" id="username" name="username" placeholder="Username" data-translate-placeholder="username-placeholder" required />
+      </div>
 
-            <!-- Email -->
-            <div class="input-container">
-                <img src="Images/email-icon.jpg" alt="Email Icon" class="input-icon">
-                <input type="email" id="email" name="email" placeholder="Email" required>
-            </div>
+      <!-- Email -->
+      <div class="input-container">
+        <img src="Images/email-icon.jpg" alt="Email Icon" class="input-icon" />
+        <input type="email" id="email" name="email" placeholder="Email" data-translate-placeholder="email-placeholder" required />
+      </div>
 
-            <!-- Password -->
-            <div class="input-container">
-                <img src="Images/key-icon.jpg" alt="Password Icon" class="input-icon">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
-                     onmousedown="togglePassword(true, 'password')" 
-                     onmouseup="togglePassword(false, 'password')" 
-                     onmouseleave="togglePassword(false, 'password')">
-            </div>
+      <!-- Password -->
+      <div class="input-container">
+        <img src="Images/key-icon.jpg" alt="Password Icon" class="input-icon" />
+        <input type="password" id="password" name="password" placeholder="Password" data-translate-placeholder="password-placeholder" required />
+        <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
+             onmousedown="togglePassword(true, 'password')" 
+             onmouseup="togglePassword(false, 'password')" 
+             onmouseleave="togglePassword(false, 'password')" />
+      </div>
 
-            <!-- Confirm Password -->
-            <div class="input-container">
-                <img src="Images/key-icon.jpg" alt="Confirm Password Icon" class="input-icon">
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-                <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
-                     onmousedown="togglePassword(true, 'confirm-password')" 
-                     onmouseup="togglePassword(false, 'confirm-password')" 
-                     onmouseleave="togglePassword(false, 'confirm-password')">
-            </div>
+      <!-- Confirm Password -->
+      <div class="input-container">
+        <img src="Images/key-icon.jpg" alt="Confirm Password Icon" class="input-icon" />
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" data-translate-placeholder="confirm-password-placeholder" required />
+        <img src="Images/eye-icon.png" alt="Show Password" class="eye-icon" 
+             onmousedown="togglePassword(true, 'confirm-password')" 
+             onmouseup="togglePassword(false, 'confirm-password')" 
+             onmouseleave="togglePassword(false, 'confirm-password')" />
+      </div>
 
-            <!-- Avatar Selection -->
-            <h3>Choose Your Avatar</h3>
-            <div class="avatar-selection">
-                <label>
-                    <input type="radio" name="avatar" value="avatar1.avif" required>
-                    <img src="Images/avatar1.avif" class="avatar" alt="Avatar 1">
-                </label>
-                <label>
-                    <input type="radio" name="avatar" value="avatar2.png">
-                    <img src="Images/avatar2.png" class="avatar" alt="Avatar 2">
-                </label>
-                <label>
-                    <input type="radio" name="avatar" value="avatar3.png">
-                    <img src="Images/avatar3.png" class="avatar" alt="Avatar 3">
-                </label>
-                <label>
-                    <input type="radio" name="avatar" value="avatar4.png">
-                    <img src="Images/avatar4.png" class="avatar" alt="Avatar 4">
-                </label>
-            </div>
+      <!-- Avatar Selection -->
+      <h3 id="choose-avatar-title">Choose Your Avatar</h3>
+      <div class="avatar-selection">
+        <label>
+          <input type="radio" name="avatar" value="avatar1.avif" required />
+          <img src="Images/avatar1.avif" class="avatar" alt="Avatar 1" />
+        </label>
+        <label>
+          <input type="radio" name="avatar" value="avatar2.png" />
+          <img src="Images/avatar2.png" class="avatar" alt="Avatar 2" />
+        </label>
+        <label>
+          <input type="radio" name="avatar" value="avatar3.png" />
+          <img src="Images/avatar3.png" class="avatar" alt="Avatar 3" />
+        </label>
+        <label>
+          <input type="radio" name="avatar" value="avatar4.png" />
+          <img src="Images/avatar4.png" class="avatar" alt="Avatar 4" />
+        </label>
+      </div>
 
-            <!-- Profile Picture Display -->
-            <div class="profile-pic-container">
-                <img id="profile-pic" class="profile-pic" src="Images/logoGAMEMASH.JPG" alt="Profile Picture">
-            </div>
+      <!-- Profile Picture Display -->
+      <div class="profile-pic-container">
+        <img id="profile-pic" class="profile-pic" src="Images/logoGAMEMASH.JPG" alt="Profile Picture" />
+      </div>
 
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+      <button type="submit" id="signup-button">Sign Up</button>
+    </form>
+  </div>
 
-    <!-- Axios and your JS -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="app.js" defer></script>
+  <!-- Axios and your JS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

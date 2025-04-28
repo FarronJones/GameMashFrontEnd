@@ -412,4 +412,111 @@
             newThought.insertBefore(emojiReact, actions);
             emojiContainer.style.display = "none";
           };
-          
+          function postThoughtPlay() {
+            const userLang = localStorage.getItem("lang") || "en";
+            const langMap = playtranslations[userLang];
+            const thoughtInput = document.getElementById("thought-input");
+            const container = document.getElementById("thoughts-container");
+        
+            if (thoughtInput.value.trim() === "") {
+                alert(langMap["emptyThoughtWarning"]);
+                return;
+            }
+        
+            const newThought = document.createElement("div");
+            newThought.classList.add("thought");
+        
+            const postedHeader = document.createElement("div");
+            postedHeader.classList.add("thought-header");
+        
+            const avatar = localStorage.getItem("avatar") || "profile-placeholder.png";
+            const firstName = localStorage.getItem("firstName") || "Anonymous";
+        
+            const avatarImg = document.createElement("img");
+            avatarImg.src = `/Images/${avatar}`;
+            avatarImg.alt = firstName;
+            avatarImg.classList.add("avatar-small");
+        
+            const posterName = document.createElement("span");
+            posterName.classList.add("poster-name");
+            posterName.textContent = firstName;
+        
+            postedHeader.appendChild(avatarImg);
+            postedHeader.appendChild(posterName);
+        
+            const content = document.createElement("p");
+            content.textContent = thoughtInput.value;
+        
+            const timestamp = document.createElement("small");
+            timestamp.textContent = `${langMap["postedOn"]} ${new Date().toLocaleString()}`;
+        
+            const actions = document.createElement("div");
+            actions.classList.add("actions");
+        
+            const editBtn = createButton(langMap["editButton"], () => {
+                const newText = prompt(langMap["editPrompt"], content.textContent);
+                if (newText) {
+                    content.textContent = newText;
+                }
+            });
+        
+            const deleteBtn = createButton(langMap["deleteButton"], () => {
+                if (confirm(langMap["deleteConfirm"])) newThought.remove();
+            });
+        
+            const replyBtn = createButton(langMap["replyButton"], () => toggleReplyBox(newThought));
+        
+            const reactBtn = document.createElement("button");
+            reactBtn.textContent = langMap["reactButton"];
+            reactBtn.classList.add("react-btn");
+        
+            const emojiContainer = document.createElement("div");
+            emojiContainer.style.display = "none";
+            emojiContainer.style.position = "absolute";
+            emojiContainer.style.backgroundColor = "white";
+            emojiContainer.style.border = "1px solid #ccc";
+            emojiContainer.style.borderRadius = "5px";
+            emojiContainer.style.padding = "5px";
+            emojiContainer.style.zIndex = "10";
+        
+            const emojis = ["😊", "😢", "😡", "❤️", "😂", "👍", "😮"];
+            emojis.forEach(emoji => {
+                const emojiButton = document.createElement("button");
+                emojiButton.textContent = emoji;
+                emojiButton.classList.add("emoji-btn");
+                emojiButton.onclick = () => {
+                    const emojiReact = document.createElement("span");
+                    emojiReact.textContent = emoji;
+                    emojiReact.style.marginRight = "5px";
+                    newThought.insertBefore(emojiReact, actions);
+                    emojiContainer.style.display = "none";
+                };
+                emojiContainer.appendChild(emojiButton);
+            });
+        
+            reactBtn.onclick = () => {
+                emojiContainer.style.display = emojiContainer.style.display === "none" ? "block" : "none";
+            };
+        
+            actions.appendChild(editBtn);
+            actions.appendChild(replyBtn);
+            actions.appendChild(deleteBtn);
+            actions.appendChild(reactBtn);
+        
+            newThought.appendChild(postedHeader);
+            newThought.appendChild(content);
+            newThought.appendChild(emojiContainer);
+            newThought.appendChild(actions);
+            newThought.appendChild(timestamp);
+        
+            const repliesContainer = document.createElement("div");
+            repliesContainer.classList.add("replies");
+            newThought.appendChild(repliesContainer);
+        
+            container.prepend(newThought);
+        
+            // ✅ TRY to send to database silently (no alert if fail)
+            postThoughtSilent(thoughtInput.value);
+        
+            thoughtInput.value = "";
+        }

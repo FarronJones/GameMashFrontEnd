@@ -3,6 +3,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     const signupForm = document.querySelector('.signup-page form');
     const editForm = document.getElementById("edit-profile-form");
 
+    const thoughtInput = document.getElementById('thought-input');
+    const thoughtsContainer = document.getElementById('thoughts-container');
+    const postButton = document.getElementById('post-button');
+
+    if (thoughtInput && thoughtsContainer && postButton) {
+        // Community Page detected
+
+        await loadThoughts();
+
+        postButton.addEventListener('click', async () => {
+            await postThought();
+        });
+    }
+
     // LOGIN FORM
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -151,5 +165,65 @@ function mapIdToAvatar(id) {
         case 3: return 'avatar3.png';
         case 4: return 'avatar4.png';
         default: return 'profile-placeholder.png';
+    }
+    function createButton(text, onClickAction) {
+        const button = document.createElement("button");
+        button.textContent = text;
+        button.onclick = onClickAction;
+        return button;
+    }    
+    async function postThoughtSilent(message) {
+        try {
+            const avatar = localStorage.getItem("avatar") || "profile-placeholder.png";
+            const email = localStorage.getItem("email");
+            const isAnon = !email;
+    
+            await axios.post('http://localhost:8081/api/comments', {
+                gameId: 1,
+                userId: null,
+                message: message,
+                profilePicture: avatar,
+                isAnon: isAnon,
+                timestamp: new Date().toISOString()
+            });
+    
+            // 🧠 No success alert, no reload, no UI changes. Just database save.
+        } catch (err) {
+            console.error("Post failed silently:", err);
+            // No alert or error popup to user
+        }
+    }
+    
+    function createThoughtElement({ message, posterName, profilePicture, timestamp }) {
+        const thought = document.createElement("div");
+        thought.classList.add("thought");
+    
+        const postedHeader = document.createElement("div");
+        postedHeader.classList.add("thought-header");
+    
+        const avatarImg = document.createElement("img");
+        avatarImg.src = `/Images/${profilePicture}`;
+        avatarImg.alt = posterName;
+        avatarImg.classList.add("avatar-small");
+    
+        const posterNameEl = document.createElement("span");
+        posterNameEl.classList.add("poster-name");
+        posterNameEl.textContent = posterName;
+    
+        postedHeader.appendChild(avatarImg);
+        postedHeader.appendChild(posterNameEl);
+    
+        const content = document.createElement("p");
+        content.textContent = message;
+    
+        const timestampEl = document.createElement("small");
+        const postedDate = new Date(timestamp);
+        timestampEl.textContent = `Posted on ${postedDate.toLocaleString()}`;
+    
+        thought.appendChild(postedHeader);
+        thought.appendChild(content);
+        thought.appendChild(timestampEl);
+    
+        return thought;
     }
 }

@@ -166,6 +166,7 @@ function mapIdToAvatar(id) {
         case 4: return 'avatar4.png';
         default: return 'profile-placeholder.png';
     }
+}
     function createButton(text, onClickAction) {
         const button = document.createElement("button");
         button.textContent = text;
@@ -195,8 +196,11 @@ function mapIdToAvatar(id) {
     }
     
     function createThoughtElement({ message, posterName, profilePicture, timestamp }) {
-        const thought = document.createElement("div");
-        thought.classList.add("thought");
+        const userLang = localStorage.getItem("lang") || "en";
+        const langMap = playtranslations[userLang];
+    
+        const newThought = document.createElement("div");
+        newThought.classList.add("thought");
     
         const postedHeader = document.createElement("div");
         postedHeader.classList.add("thought-header");
@@ -218,12 +222,91 @@ function mapIdToAvatar(id) {
     
         const timestampEl = document.createElement("small");
         const postedDate = new Date(timestamp);
-        timestampEl.textContent = `Posted on ${postedDate.toLocaleString()}`;
+        timestampEl.textContent = `${langMap["postedOn"]} ${postedDate.toLocaleString()}`;
     
-        thought.appendChild(postedHeader);
-        thought.appendChild(content);
-        thought.appendChild(timestampEl);
+        const actions = document.createElement("div");
+        actions.classList.add("actions");
     
-        return thought;
+        const editBtn = createButton(langMap["editButton"], () => {
+            const newText = prompt(langMap["editPrompt"], content.textContent);
+            if (newText) content.textContent = newText;
+        });
+    
+        const deleteBtn = createButton(langMap["deleteButton"], () => {
+            if (confirm(langMap["deleteConfirm"])) newThought.remove();
+        });
+    
+        const replyBtn = createButton(langMap["replyButton"], () => toggleReplyBox(newThought));
+    
+        const reactBtn = document.createElement("button");
+        reactBtn.textContent = langMap["reactButton"];
+        reactBtn.classList.add("react-btn");
+    
+        const emojiContainer = document.createElement("div");
+        emojiContainer.style.display = "none";
+        emojiContainer.style.position = "absolute";
+        emojiContainer.style.backgroundColor = "white";
+        emojiContainer.style.border = "1px solid #ccc";
+        emojiContainer.style.borderRadius = "5px";
+        emojiContainer.style.padding = "5px";
+        emojiContainer.style.zIndex = "10";
+    
+        const emojis = ["😊", "😢", "😡", "❤️", "😂", "👍", "😮"];
+        emojis.forEach(emoji => {
+            const emojiButton = document.createElement("button");
+            emojiButton.textContent = emoji;
+            emojiButton.classList.add("emoji-btn");
+            emojiButton.onclick = () => {
+                const emojiReact = document.createElement("span");
+                emojiReact.textContent = emoji;
+                emojiReact.style.marginRight = "5px";
+                newThought.insertBefore(emojiReact, actions);
+                emojiContainer.style.display = "none";
+            };
+            emojiContainer.appendChild(emojiButton);
+        });
+    
+        reactBtn.onclick = () => {
+            emojiContainer.style.display = emojiContainer.style.display === "none" ? "block" : "none";
+        };
+    
+        actions.appendChild(editBtn);
+        actions.appendChild(replyBtn);
+        actions.appendChild(deleteBtn);
+        actions.appendChild(reactBtn);
+    
+        newThought.appendChild(postedHeader);
+        newThought.appendChild(content);
+        newThought.appendChild(emojiContainer);
+        newThought.appendChild(actions);
+        newThought.appendChild(timestampEl);
+    
+        const repliesContainer = document.createElement("div");
+        repliesContainer.classList.add("replies");
+        newThought.appendChild(repliesContainer);
+    
+        return newThought;
     }
-}
+    
+    async function loadThoughts() {
+        try {
+            const res = await axios.get('http://localhost:8081/api/comments/community');
+            const thoughts = res.data;
+    
+            const container = document.getElementById("thoughts-container");
+            container.innerHTML = ""; // Clear existing
+    
+            thoughts.reverse().forEach(thought => {
+                const thoughtElement = createThoughtElement({
+                    message: thought.message,
+                    posterName: thought.isAnon ? "Anonymous" : (localStorage.getItem("firstName") || "User"),
+                    profilePicture: thought.profilePicture || "profile-placeholder.png",
+                    timestamp: thought.timestamp
+                });
+    
+                container.appendChild(thoughtElement);
+            });
+        } catch (err) {
+            console.error("Failed to load thoughts:", err);
+        }
+    }
